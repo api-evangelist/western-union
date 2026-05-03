@@ -1,0 +1,131 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "fibo": "https://spec.edmcouncil.org/fibo/ontology/",
+    "wu": "https://developer.westernunion.com/ontology/",
+
+    "Payment": {
+      "@id": "schema:PayAction",
+      "@type": "@id"
+    },
+    "paymentId": {
+      "@id": "wu:paymentId",
+      "@type": "xsd:string"
+    },
+    "paymentStatus": {
+      "@id": "schema:orderStatus",
+      "@type": "xsd:string"
+    },
+    "partnerReference": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "paymentReference": {
+      "@id": "wu:paymentReference",
+      "@type": "xsd:string"
+    },
+    "amount": {
+      "@id": "schema:price",
+      "@type": "xsd:integer"
+    },
+    "currencyCode": {
+      "@id": "schema:priceCurrency",
+      "@type": "xsd:string"
+    },
+    "settlementAmount": {
+      "@id": "wu:settlementAmount",
+      "@type": "xsd:integer"
+    },
+    "settlementCurrency": {
+      "@id": "wu:settlementCurrency",
+      "@type": "xsd:string"
+    },
+    "purposeOfPayment": {
+      "@id": "wu:purposeOfPayment",
+      "@type": "xsd:string"
+    },
+
+    "Batch": {
+      "@id": "wu:Batch",
+      "@type": "@id"
+    },
+    "batchId": {
+      "@id": "wu:batchId",
+      "@type": "xsd:string"
+    },
+    "batchReference": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "numberOfReceivedPayments": {
+      "@id": "wu:numberOfReceivedPayments",
+      "@type": "xsd:integer"
+    },
+    "numberOfAcceptedPayments": {
+      "@id": "wu:numberOfAcceptedPayments",
+      "@type": "xsd:integer"
+    },
+
+    "Beneficiary": {
+      "@id": "schema:Person",
+      "@type": "@id"
+    },
+    "firstName": {
+      "@id": "schema:givenName",
+      "@type": "xsd:string"
+    },
+    "lastName": {
+      "@id": "schema:familyName",
+      "@type": "xsd:string"
+    },
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+
+    "BankAccount": {
+      "@id": "schema:BankAccount",
+      "@type": "@id"
+    },
+    "accountNumber": {
+      "@id": "schema:accountId",
+      "@type": "xsd:string"
+    },
+    "bankCode": {
+      "@id": "wu:bankCode",
+      "@type": "xsd:string"
+    },
+
+    "Quote": {
+      "@id": "schema:PriceSpecification",
+      "@type": "@id"
+    },
+    "fxRate": {
+      "@id": "wu:fxRate",
+      "@type": "xsd:double"
+    },
+    "expirationIntervalInSec": {
+      "@id": "wu:expirationInterval",
+      "@type": "xsd:integer"
+    },
+
+    "Address": {
+      "@id": "schema:PostalAddress",
+      "@type": "@id"
+    },
+    "line1": {
+      "@id": "schema:streetAddress",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "schema:addressLocality",
+      "@type": "xsd:string"
+    },
+    "countryCode": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Payment",
+  "description": "Western Union international payment structure.",
+  "fields": [
+    {"name": "id", "type": "string", "required": true, "description": "Western Union payment ID."},
+    {"name": "customerId", "type": "string", "required": false, "description": "Partner client ID."},
+    {"name": "status", "type": "string", "required": true, "description": "received, accepted, rejected, processed, returned, or pending."},
+    {"name": "partnerReference", "type": "string", "required": false, "description": "Partner's internal reference."},
+    {"name": "paymentReference", "type": "string", "required": false, "description": "WU payment reference number."},
+    {"name": "createdOn", "type": "date-time", "required": false, "description": "Payment creation timestamp."},
+    {"name": "lastUpdatedOn", "type": "date-time", "required": false, "description": "Last status update timestamp."},
+    {"name": "paymentMethod", "type": "string", "required": false, "description": "bankTransfer, wireTransfer, or swift."},
+    {"name": "amount", "type": "integer", "required": true, "description": "Amount in minor units (e.g., cents)."},
+    {"name": "currencyCode", "type": "string", "required": true, "description": "ISO 4217 payment currency."},
+    {"name": "settlementAmount", "type": "integer", "required": false, "description": "Settlement amount in minor units."},
+    {"name": "settlementCurrencyCode", "type": "string", "required": false, "description": "ISO 4217 settlement currency."},
+    {"name": "purposeOfPayment", "type": "string", "required": false, "description": "Purpose code (SALARY, INVOICE, etc.)."},
+    {"name": "beneficiary.type", "type": "string", "required": true, "description": "individual or business."},
+    {"name": "beneficiary.firstName", "type": "string", "required": false, "description": "Beneficiary first name."},
+    {"name": "beneficiary.lastName", "type": "string", "required": false, "description": "Beneficiary last name."},
+    {"name": "beneficiary.email", "type": "string", "required": false, "description": "Beneficiary email."},
+    {"name": "beneficiary.address.line1", "type": "string", "required": true, "description": "Street address."},
+    {"name": "beneficiary.address.city", "type": "string", "required": true, "description": "City."},
+    {"name": "beneficiary.address.countryCode", "type": "string", "required": true, "description": "ISO 3166-1 alpha-2 country code."},
+    {"name": "bankAccount.accountNumber", "type": "string", "required": true, "description": "Bank account number or IBAN."},
+    {"name": "bankAccount.bankCode", "type": "string", "required": true, "description": "SWIFT/BIC code."},
+    {"name": "bankAccount.accountType", "type": "string", "required": false, "description": "checking, savings, or current."},
+    {"name": "errorCode", "type": "string", "required": false, "description": "Error code if rejected."}
+  ]
+}

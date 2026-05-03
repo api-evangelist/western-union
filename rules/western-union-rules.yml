@@ -1,0 +1,75 @@
+extends: spectral:oas
+rules:
+  wu-operation-id-camel-case:
+    description: Operation IDs must use camelCase.
+    message: "Operation ID '{{value}}' should use camelCase."
+    severity: warn
+    given: "$.paths.*.*.operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  wu-client-id-in-path:
+    description: >-
+      All customer-specific paths must include the {clientId} path parameter
+      to scope operations to a specific WU partner account.
+    message: "Path '{{path}}' should include '{clientId}' for scoping to partner account."
+    severity: warn
+    given: "$.paths[?(@.startsWith('/customers'))][*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "/\\{clientId\\}/"
+
+  wu-response-200-content-type:
+    description: Successful responses must return application/json.
+    message: "Response at '{{path}}' should define application/json content."
+    severity: warn
+    given: "$.paths.*.*.responses.200.content"
+    then:
+      function: truthy
+
+  wu-tags-defined:
+    description: Each operation must include at least one tag.
+    message: "Operation at '{{path}}' must include at least one tag."
+    severity: warn
+    given: "$.paths.*.*.tags"
+    then:
+      function: truthy
+
+  wu-description-required:
+    description: Each operation must have a description.
+    message: "Operation at '{{path}}' is missing a description."
+    severity: warn
+    given: "$.paths.*.*.description"
+    then:
+      function: truthy
+
+  wu-no-trailing-slash:
+    description: API paths must not have trailing slashes.
+    message: "Path '{{value}}' must not end with a trailing slash."
+    severity: error
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/$"
+
+  wu-amount-in-minor-units:
+    description: >-
+      Payment amount fields should be described as minor units (e.g., cents)
+      in their schema description.
+    message: "Amount field should describe minor unit format."
+    severity: info
+    given: "$.components.schemas.PaymentRequest.properties.amount.description"
+    then:
+      function: truthy
+
+  wu-mtls-security:
+    description: All operations must use mutualTLS authentication.
+    message: "Operation at '{{path}}' must declare mtlsAuth security."
+    severity: warn
+    given: "$.paths.*.*.security"
+    then:
+      function: truthy

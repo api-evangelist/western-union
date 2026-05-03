@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/western-union/main/json-schema/western-union-payment-schema.json",
+  "title": "Western Union Payment",
+  "description": "Represents an international payment in a Western Union batch.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Western Union payment identifier."
+    },
+    "customerId": {
+      "type": "string",
+      "description": "Partner client ID."
+    },
+    "status": {
+      "type": "string",
+      "description": "Current payment status.",
+      "enum": ["received", "accepted", "rejected", "processed", "returned", "pending"]
+    },
+    "partnerReference": {
+      "type": "string",
+      "description": "Partner's internal reference for reconciliation."
+    },
+    "paymentReference": {
+      "type": "string",
+      "description": "Western Union payment reference number."
+    },
+    "createdOn": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lastUpdatedOn": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "paymentMethod": {
+      "type": "string",
+      "enum": ["bankTransfer", "wireTransfer", "swift"]
+    },
+    "amount": {
+      "type": "integer",
+      "description": "Payment amount in minor units (e.g., cents)."
+    },
+    "currencyCode": {
+      "type": "string",
+      "description": "ISO 4217 payment currency code."
+    },
+    "settlementAmount": {
+      "type": "integer",
+      "description": "Settlement amount in minor units."
+    },
+    "settlementCurrencyCode": {
+      "type": "string",
+      "description": "ISO 4217 settlement currency code."
+    },
+    "purposeOfPayment": {
+      "type": "string",
+      "description": "Payment purpose code (e.g., SALARY, INVOICE, PERSONAL)."
+    },
+    "beneficiary": {
+      "$ref": "#/$defs/Beneficiary"
+    },
+    "bankAccount": {
+      "$ref": "#/$defs/BankAccount"
+    },
+    "errorCode": {
+      "type": "string",
+      "description": "Error code if payment was rejected."
+    }
+  },
+  "required": ["id", "status", "amount", "currencyCode"],
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "line1": {"type": "string"},
+        "line2": {"type": "string"},
+        "line3": {"type": "string"},
+        "city": {"type": "string"},
+        "stateOrProv": {"type": "string"},
+        "zipOrPostal": {"type": "string"},
+        "countryCode": {"type": "string", "description": "ISO 3166-1 alpha-2 country code."}
+      },
+      "required": ["line1", "city", "countryCode"]
+    },
+    "Beneficiary": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "type": {"type": "string", "enum": ["individual", "business"]},
+        "firstName": {"type": "string"},
+        "middleName": {"type": "string"},
+        "lastName": {"type": "string"},
+        "email": {"type": "string", "format": "email"},
+        "phoneNumber": {"type": "string"},
+        "dateOfBirth": {"type": "string", "format": "date"},
+        "businessName": {"type": "string"},
+        "taxId": {"type": "string"},
+        "address": {"$ref": "#/$defs/Address"}
+      },
+      "required": ["type"]
+    },
+    "BankAccount": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "accountNumber": {"type": "string"},
+        "accountType": {"type": "string", "enum": ["checking", "savings", "current"]},
+        "bankName": {"type": "string"},
+        "bankCode": {"type": "string", "description": "SWIFT/BIC code."},
+        "bankBranchCode": {"type": "string"},
+        "bankBranchName": {"type": "string"},
+        "address": {"$ref": "#/$defs/Address"}
+      },
+      "required": ["accountNumber", "bankCode"]
+    }
+  }
+}

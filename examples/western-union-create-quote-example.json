@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.westernunion.com/customers/client123/quotes",
+    "headers": {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "body": {
+      "tradeCurrency": "USD",
+      "settlementCurrency": "EUR",
+      "tradeAmount": 100000,
+      "partnerReference": "QUOTE-REF-001"
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "id": "quote-xyz789",
+      "customerId": "client123",
+      "partnerReference": "QUOTE-REF-001",
+      "status": "active",
+      "createdOn": "2026-05-03T10:00:00Z",
+      "lastUpdatedOn": "2026-05-03T10:00:00Z",
+      "expirationIntervalInSec": 300,
+      "quotedItems": {
+        "isDirectRate": true,
+        "rate": 0.9245,
+        "rateInverted": 1.0817,
+        "decimalsDirect": 4,
+        "decimalsIndirect": 4,
+        "tradeAmount": 100000,
+        "settlementAmount": 92450,
+        "tradeCurrency": "USD",
+        "settlementCurrency": "EUR"
+      }
+    }
+  }
+}

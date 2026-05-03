@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "https://api.westernunion.com/customers/client123/batches/batch-2026-05-001",
+    "headers": {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "body": {
+      "reference": "PAYROLL-MAY-2026-001"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "id": "batch-2026-05-001",
+      "reference": "PAYROLL-MAY-2026-001",
+      "createdOn": "2026-05-03T09:00:00Z",
+      "lastUpdatedOn": "2026-05-03T09:00:00Z",
+      "numberOfReceivedPayments": 0,
+      "numberOfAcceptedPayments": 0,
+      "aggregateAmounts": []
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.westernunion.com/customers/client123/batches/batch-2026-05-001/payments",
+    "headers": {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "body": {
+      "partnerReference": "PMT-001-MAY2026",
+      "amount": 250000,
+      "currencyCode": "USD",
+      "settlementCurrency": "EUR",
+      "paymentMethod": "bankTransfer",
+      "purposeOfPayment": "SALARY",
+      "beneficiary": {
+        "firstName": "Maria",
+        "lastName": "Garcia",
+        "email": "maria.garcia@example.com",
+        "type": "individual",
+        "address": {
+          "line1": "Calle Mayor 42",
+          "city": "Madrid",
+          "zipOrPostal": "28013",
+          "countryCode": "ES"
+        }
+      },
+      "bankAccount": {
+        "accountNumber": "ES9121000418450200051332",
+        "accountType": "checking",
+        "bankName": "Banco Santander",
+        "bankCode": "BSCHESMMXXX"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "id": "pmt-abc123def456",
+      "customerId": "client123",
+      "status": "received",
+      "partnerReference": "PMT-001-MAY2026",
+      "createdOn": "2026-05-03T09:05:00Z",
+      "lastUpdatedOn": "2026-05-03T09:05:00Z",
+      "paymentMethod": "bankTransfer",
+      "amount": 250000,
+      "currencyCode": "USD",
+      "purposeOfPayment": "SALARY"
+    }
+  }
+}

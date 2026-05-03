@@ -1,0 +1,241 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Western Union International Payments"
+  description: >-
+    Workflow capability for international money transfer and batch payment
+    processing via Western Union's global payment network. Covers FX rate
+    quoting, batch creation, payment submission, and status tracking across
+    200+ countries in 130+ currencies. Designed for financial institutions,
+    ERP integrations, and enterprise payment workflows.
+  tags:
+    - Money Transfer
+    - Payments
+    - International
+    - Batch Payments
+    - Foreign Exchange
+    - Financial Services
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      WU_CLIENT_ID: WU_CLIENT_ID
+      WU_CERTIFICATE_PATH: WU_CERTIFICATE_PATH
+      WU_CERTIFICATE_PASSWORD: WU_CERTIFICATE_PASSWORD
+
+capability:
+  consumes:
+    - import: wu-mass-payments
+      location: ./shared/mass-payments.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: wu-international-payments-api
+      description: "Unified REST API for Western Union international payment workflows."
+      resources:
+        - path: /v1/balances/{currency}
+          name: balance
+          description: Check available balance for a currency.
+          operations:
+            - method: GET
+              name: get-holding-balance
+              description: Check holding balance for a specific currency.
+              call: "wu-mass-payments.get-holding-balance"
+              with:
+                clientId: "env.WU_CLIENT_ID"
+                currencyCode: "rest.currency"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/quotes
+          name: quotes
+          description: Generate FX rate quotes before initiating payments.
+          operations:
+            - method: POST
+              name: create-quote
+              description: Generate a foreign exchange rate quote.
+              call: "wu-mass-payments.create-quote"
+              with:
+                clientId: "env.WU_CLIENT_ID"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/batches/{batchId}
+          name: batch
+          description: Create and manage payment batches.
+          operations:
+            - method: PUT
+              name: create-batch
+              description: Create a new payment batch.
+              call: "wu-mass-payments.create-batch"
+              with:
+                clientId: "env.WU_CLIENT_ID"
+                batchId: "rest.batchId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: GET
+              name: get-batch
+              description: Get batch status and summary.
+              call: "wu-mass-payments.get-batch"
+              with:
+                clientId: "env.WU_CLIENT_ID"
+                batchId: "rest.batchId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-batch
+              description: Delete an uncommitted batch.
+              call: "wu-mass-payments.delete-batch"
+              with:
+                clientId: "env.WU_CLIENT_ID"
+                batchId: "rest.batchId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/batches/{batchId}/payments
+          name: payments
+          description: Add and list payments within a batch.
+          operations:
+            - method: POST
+              name: create-payment
+              description: Add an international payment to a batch.
+              call: "wu-mass-payments.create-payment"
+              with:
+                clientId: "env.WU_CLIENT_ID"
+                batchId: "rest.batchId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: GET
+              name: list-payments
+              description: List all payments in a batch.
+              call: "wu-mass-payments.list-payments"
+              with:
+                clientId: "env.WU_CLIENT_ID"
+                batchId: "rest.batchId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: wu-international-payments-mcp
+      transport: http
+      description: "MCP server for AI-assisted international payment processing via Western Union."
+      tools:
+        - name: check-balance
+          description: >-
+            Check the holding balance for a specific currency in the Western
+            Union account before initiating payments.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wu-mass-payments.get-holding-balance"
+          with:
+            clientId: "env.WU_CLIENT_ID"
+            currencyCode: "tools.currency"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-fx-quote
+          description: >-
+            Get a foreign exchange rate quote from Western Union for converting
+            between currencies. Returns rate, inverted rate, and settlement
+            amount. Valid for 5 minutes.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wu-mass-payments.create-quote"
+          with:
+            clientId: "env.WU_CLIENT_ID"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-payment-batch
+          description: >-
+            Create a new payment batch for grouping international payments.
+            Payments can be added to the batch before committing for processing.
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: true
+          call: "wu-mass-payments.create-batch"
+          with:
+            clientId: "env.WU_CLIENT_ID"
+            batchId: "tools.batchId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: add-payment-to-batch
+          description: >-
+            Add an international payment to an existing batch. Specify
+            recipient details, bank account, amount, and currency. Supports
+            130+ currencies in 200+ countries.
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "wu-mass-payments.create-payment"
+          with:
+            clientId: "env.WU_CLIENT_ID"
+            batchId: "tools.batchId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-batch-payments
+          description: >-
+            List all payments within a batch and their current statuses
+            (received, accepted, rejected, processed).
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wu-mass-payments.list-payments"
+          with:
+            clientId: "env.WU_CLIENT_ID"
+            batchId: "tools.batchId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-batch-status
+          description: >-
+            Get the current status of a payment batch including counts of
+            received vs. accepted payments and aggregate currency amounts.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wu-mass-payments.get-batch"
+          with:
+            clientId: "env.WU_CLIENT_ID"
+            batchId: "tools.batchId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: delete-payment-batch
+          description: >-
+            Delete an uncommitted payment batch. Cannot delete batches that
+            have already been submitted for processing.
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "wu-mass-payments.delete-batch"
+          with:
+            clientId: "env.WU_CLIENT_ID"
+            batchId: "tools.batchId"
+          outputParameters:
+            - type: object
+              mapping: "$."

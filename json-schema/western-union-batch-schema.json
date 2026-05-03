@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/western-union/main/json-schema/western-union-batch-schema.json",
+  "title": "Western Union Payment Batch",
+  "description": "Represents a batch of international payments in the Western Union Mass Payments API.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Batch identifier."
+    },
+    "reference": {
+      "type": "string",
+      "description": "Partner's internal reference for the batch."
+    },
+    "createdOn": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lastUpdatedOn": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "numberOfReceivedPayments": {
+      "type": "integer",
+      "description": "Total number of payments received in this batch."
+    },
+    "numberOfAcceptedPayments": {
+      "type": "integer",
+      "description": "Number of payments accepted for processing."
+    },
+    "aggregateAmounts": {
+      "type": "array",
+      "description": "Summary of payment amounts grouped by currency.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "currencyCode": {
+            "type": "string",
+            "description": "ISO 4217 currency code."
+          },
+          "totalAmount": {
+            "type": "number",
+            "format": "double",
+            "description": "Total amount for this currency."
+          }
+        },
+        "required": ["currencyCode", "totalAmount"]
+      }
+    }
+  },
+  "required": ["id", "reference", "createdOn", "numberOfReceivedPayments", "numberOfAcceptedPayments"]
+}
