@@ -1,0 +1,77 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Western Union Mass Payments API — Customers
+  description: 'Western Union Mass Payments API — Customers. 1 operations. Lead operation: Get Customer. Self-contained Naftiko
+    capability covering one Western Union business surface.'
+  tags:
+  - Western Union
+  - Customers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WESTERN_UNION_API_KEY: WESTERN_UNION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: mass-payments-customers
+    baseUri: https://api.westernunion.com
+    description: Western Union Mass Payments API — Customers business capability. Self-contained, no shared references.
+    resources:
+    - name: customers-clientId
+      path: /customers/{clientId}
+      operations:
+      - name: getcustomer
+        method: GET
+        description: Get Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clientId
+          in: path
+          type: string
+          description: The partner's Western Union client ID.
+          required: true
+  exposes:
+  - type: rest
+    namespace: mass-payments-customers-rest
+    port: 8080
+    description: REST adapter for Western Union Mass Payments API — Customers. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/customers/{clientid}
+      name: customers-clientid
+      description: REST surface for customers-clientId.
+      operations:
+      - method: GET
+        name: getcustomer
+        description: Get Customer
+        call: mass-payments-customers.getcustomer
+        with:
+          clientId: rest.clientId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: mass-payments-customers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Western Union Mass Payments API — Customers. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-customer
+      description: Get Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: mass-payments-customers.getcustomer
+      with:
+        clientId: tools.clientId
+      outputParameters:
+      - type: object
+        mapping: $.

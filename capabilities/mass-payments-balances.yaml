@@ -1,0 +1,84 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Western Union Mass Payments API — Balances
+  description: 'Western Union Mass Payments API — Balances. 1 operations. Lead operation: Get Holding Balance. Self-contained
+    Naftiko capability covering one Western Union business surface.'
+  tags:
+  - Western Union
+  - Balances
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WESTERN_UNION_API_KEY: WESTERN_UNION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: mass-payments-balances
+    baseUri: https://api.westernunion.com
+    description: Western Union Mass Payments API — Balances business capability. Self-contained, no shared references.
+    resources:
+    - name: HoldingBalance-clientId-currencyCode
+      path: /HoldingBalance/{clientId}/{currencyCode}
+      operations:
+      - name: getholdingbalance
+        method: GET
+        description: Get Holding Balance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clientId
+          in: path
+          type: string
+          description: The partner's Western Union client ID.
+          required: true
+        - name: currencyCode
+          in: path
+          type: string
+          description: ISO 4217 currency code (e.g., USD, EUR, GBP).
+          required: true
+  exposes:
+  - type: rest
+    namespace: mass-payments-balances-rest
+    port: 8080
+    description: REST adapter for Western Union Mass Payments API — Balances. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/holdingbalance/{clientid}/{currencycode}
+      name: holdingbalance-clientid-currencycode
+      description: REST surface for HoldingBalance-clientId-currencyCode.
+      operations:
+      - method: GET
+        name: getholdingbalance
+        description: Get Holding Balance
+        call: mass-payments-balances.getholdingbalance
+        with:
+          clientId: rest.clientId
+          currencyCode: rest.currencyCode
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: mass-payments-balances-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Western Union Mass Payments API — Balances. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-holding-balance
+      description: Get Holding Balance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: mass-payments-balances.getholdingbalance
+      with:
+        clientId: tools.clientId
+        currencyCode: tools.currencyCode
+      outputParameters:
+      - type: object
+        mapping: $.

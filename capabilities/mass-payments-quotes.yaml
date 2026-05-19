@@ -1,0 +1,84 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Western Union Mass Payments API — Quotes
+  description: 'Western Union Mass Payments API — Quotes. 1 operations. Lead operation: Create FX Quote. Self-contained Naftiko
+    capability covering one Western Union business surface.'
+  tags:
+  - Western Union
+  - Quotes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WESTERN_UNION_API_KEY: WESTERN_UNION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: mass-payments-quotes
+    baseUri: https://api.westernunion.com
+    description: Western Union Mass Payments API — Quotes business capability. Self-contained, no shared references.
+    resources:
+    - name: customers-clientId-quotes
+      path: /customers/{clientId}/quotes
+      operations:
+      - name: createquote
+        method: POST
+        description: Create FX Quote
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clientId
+          in: path
+          type: string
+          description: The partner's Western Union client ID.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: mass-payments-quotes-rest
+    port: 8080
+    description: REST adapter for Western Union Mass Payments API — Quotes. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/customers/{clientid}/quotes
+      name: customers-clientid-quotes
+      description: REST surface for customers-clientId-quotes.
+      operations:
+      - method: POST
+        name: createquote
+        description: Create FX Quote
+        call: mass-payments-quotes.createquote
+        with:
+          clientId: rest.clientId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: mass-payments-quotes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Western Union Mass Payments API — Quotes. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: create-fx-quote
+      description: Create FX Quote
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: mass-payments-quotes.createquote
+      with:
+        clientId: tools.clientId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
