@@ -1,0 +1,1943 @@
+{
+  "item": [
+    {
+      "id": "e4a53569-df90-4acf-8ef5-6a8458f010b9",
+      "name": "Health",
+      "description": {
+        "content": "API health check.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e261f2a5-3583-4028-85c7-a2e79e509303",
+          "name": "Health Check",
+          "request": {
+            "name": "Health Check",
+            "description": {
+              "content": "Verifies the API is available and the client's mTLS credentials are valid. Returns a simple pong response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Ping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "3574e5d0-76b3-4fa9-b882-6b0a623f86bd",
+              "name": "API is healthy.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Ping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"pong\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3365288f-d4d5-4dc7-a9ab-cea6e63e71dc",
+              "name": "Invalid or missing client certificate.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Ping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b9b3676e-cb99-4d7f-91f6-5e46c8cc4327",
+      "name": "Customers",
+      "description": {
+        "content": "Customer account management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "705b6897-8076-48db-bb65-64a52226ec48",
+          "name": "Get Customer",
+          "request": {
+            "name": "Get Customer",
+            "description": {
+              "content": "Returns the account details and configuration for the authenticated Western Union partner/customer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) The partner's Western Union client ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "e11a4bb4-9f5c-4930-b27b-3b56ab2ff5bc",
+              "name": "Customer account details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"pending\",\n  \"settlementCurrency\": \"string\",\n  \"createdOn\": \"1980-02-07T17:42:27.739Z\",\n  \"lastUpdatedOn\": \"1991-10-03T13:00:36.267Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13c5073a-bd87-43be-a4f0-fbdbf2f458a9",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cb853e02-5d75-49ae-88d9-f9a6f82a62ea",
+              "name": "Customer not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e8655f6b-a011-4598-a0e6-a85b223478bc",
+      "name": "Balances",
+      "description": {
+        "content": "Holding balance inquiry.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3ab474e9-731c-4d2d-9e4b-a026ba5141a8",
+          "name": "Get Holding Balance",
+          "request": {
+            "name": "Get Holding Balance",
+            "description": {
+              "content": "Returns the current holding balance for the specified currency in the partner's WU account. Used to verify sufficient funds before initiating payments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "HoldingBalance",
+                ":clientId",
+                ":currencyCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) The partner's Western Union client ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "currencyCode",
+                  "description": "(Required) ISO 4217 currency code (e.g., USD, EUR, GBP)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "dda8de72-c541-4282-887f-0bdc3402d0ff",
+              "name": "Holding balance for the specified currency.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "HoldingBalance",
+                    ":clientId",
+                    ":currencyCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currencyCode",
+                      "description": "(Required) ISO 4217 currency code (e.g., USD, EUR, GBP)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"clientId\": \"string\",\n  \"currencyCode\": \"string\",\n  \"balance\": {\n    \"currencyCode\": \"string\",\n    \"amount\": 5078.422856551887\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "938c1c62-4f70-485f-b7ff-942b901753c5",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "HoldingBalance",
+                    ":clientId",
+                    ":currencyCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currencyCode",
+                      "description": "(Required) ISO 4217 currency code (e.g., USD, EUR, GBP)."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "69611c0e-9874-46df-8f4b-f59b2692798f",
+              "name": "Client or currency not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "HoldingBalance",
+                    ":clientId",
+                    ":currencyCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currencyCode",
+                      "description": "(Required) ISO 4217 currency code (e.g., USD, EUR, GBP)."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d0915d6f-7f55-44c1-8a10-b863a21844c0",
+      "name": "Batches",
+      "description": {
+        "content": "Payment batch lifecycle management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4e52fc9e-237e-4d64-a02c-14c0f12e6ba6",
+          "name": "Get Batch",
+          "request": {
+            "name": "Get Batch",
+            "description": {
+              "content": "Returns the details and current status of a payment batch, including counts of received and accepted payments and aggregate amounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":clientId",
+                "batches",
+                ":batchId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) The partner's Western Union client ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "batchId",
+                  "description": "(Required) The unique batch identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "0cf037c6-41c4-42f7-907b-83e75f892368",
+              "name": "Batch details and status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "batches",
+                    ":batchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batchId",
+                      "description": "(Required) The unique batch identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"reference\": \"string\",\n  \"createdOn\": \"1971-11-12T13:45:42.826Z\",\n  \"numberOfReceivedPayments\": 9417,\n  \"numberOfAcceptedPayments\": 1795,\n  \"lastUpdatedOn\": \"1974-06-29T16:41:09.845Z\",\n  \"aggregateAmounts\": [\n    {\n      \"currencyCode\": \"string\",\n      \"totalAmount\": 7766.8825414631\n    },\n    {\n      \"currencyCode\": \"string\",\n      \"totalAmount\": 3279.33817936665\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06787856-2c68-436b-84e1-e94148211ce5",
+              "name": "Batch not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "batches",
+                    ":batchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batchId",
+                      "description": "(Required) The unique batch identifier."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5618333-b69b-4641-8710-a70d8572e150",
+          "name": "Create Batch",
+          "request": {
+            "name": "Create Batch",
+            "description": {
+              "content": "Creates a new payment batch with the specified batch ID and reference. Payments are added to this batch before committing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":clientId",
+                "batches",
+                ":batchId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) The partner's Western Union client ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "batchId",
+                  "description": "(Required) Partner-assigned batch identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reference\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fd18de52-6c44-4037-977f-dc84ed1eb245",
+              "name": "Batch created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "batches",
+                    ":batchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batchId",
+                      "description": "(Required) Partner-assigned batch identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"reference\": \"string\",\n  \"createdOn\": \"1971-11-12T13:45:42.826Z\",\n  \"numberOfReceivedPayments\": 9417,\n  \"numberOfAcceptedPayments\": 1795,\n  \"lastUpdatedOn\": \"1974-06-29T16:41:09.845Z\",\n  \"aggregateAmounts\": [\n    {\n      \"currencyCode\": \"string\",\n      \"totalAmount\": 7766.8825414631\n    },\n    {\n      \"currencyCode\": \"string\",\n      \"totalAmount\": 3279.33817936665\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "214c160b-b1d5-4240-963e-4628b9bcc36e",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "batches",
+                    ":batchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batchId",
+                      "description": "(Required) Partner-assigned batch identifier."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1d66a78-ee5e-4016-820c-6902ea500cb8",
+          "name": "Delete Batch",
+          "request": {
+            "name": "Delete Batch",
+            "description": {
+              "content": "Deletes a batch that has not yet been committed. Committed batches cannot be deleted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":clientId",
+                "batches",
+                ":batchId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) The partner's Western Union client ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "batchId",
+                  "description": "(Required) The batch identifier to delete."
+                }
+              ]
+            },
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "275eaab6-de9f-4a59-9241-8b2a8be61159",
+              "name": "Batch deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "batches",
+                    ":batchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batchId",
+                      "description": "(Required) The batch identifier to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5ff7ff8d-76d6-4c73-bf25-b737864cdaab",
+              "name": "Batch not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "batches",
+                    ":batchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batchId",
+                      "description": "(Required) The batch identifier to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ea8bcb85-25e8-4efa-b20e-933a1dcdc061",
+      "name": "Payments",
+      "description": {
+        "content": "Individual payment management within a batch.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e5dba80e-7db9-46d5-9024-dbc671be76a7",
+          "name": "List Payments in Batch",
+          "request": {
+            "name": "List Payments in Batch",
+            "description": {
+              "content": "Returns all payments within a specified batch, with their current statuses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":clientId",
+                "batches",
+                ":batchId",
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) The partner's Western Union client ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "batchId",
+                  "description": "(Required) The batch identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "daa0cd0b-c1d9-4de0-af27-846a1b504f18",
+              "name": "List of payments in the batch.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "batches",
+                    ":batchId",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batchId",
+                      "description": "(Required) The batch identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payments\": [\n    {\n      \"id\": \"string\",\n      \"customerId\": \"string\",\n      \"status\": \"rejected\",\n      \"errorCode\": \"string\",\n      \"partnerReference\": \"string\",\n      \"paymentReference\": \"string\",\n      \"createdOn\": \"2000-09-11T05:52:08.383Z\",\n      \"lastUpdatedOn\": \"2023-07-14T03:06:48.185Z\",\n      \"paymentMethod\": \"string\",\n      \"amount\": 7599,\n      \"currencyCode\": \"string\",\n      \"settlementAmount\": 9939,\n      \"settlementCurrencyCode\": \"string\",\n      \"chargeType\": \"string\",\n      \"amountReturned\": 9898.052738076529,\n      \"amountReturnedCurrency\": \"string\",\n      \"purposeOfPayment\": \"string\",\n      \"remittanceType\": \"string\",\n      \"beneficiary\": {\n        \"id\": \"string\",\n        \"firstName\": \"string\",\n        \"middleName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"JQZwDf@jWCYbGHZarhYpRuOYnzwwFuqGEg.qn\",\n        \"phoneNumber\": \"string\",\n        \"cellNumber\": \"string\",\n        \"dateOfBirth\": \"1980-06-27\",\n        \"gender\": \"M\",\n        \"type\": \"business\",\n        \"businessName\": \"string\",\n        \"businessRegistrationNumber\": \"string\",\n        \"businessRegistrationCountry\": \"string\",\n        \"taxId\": \"string\",\n        \"address\": {\n          \"line1\": \"string\",\n          \"line2\": \"string\",\n          \"line3\": \"string\",\n          \"city\": \"string\",\n          \"stateOrProv\": \"string\",\n          \"zipOrPostal\": \"string\",\n          \"countryCode\": \"string\"\n        }\n      },\n      \"bankAccount\": {\n        \"id\": \"string\",\n        \"accountNumber\": \"string\",\n        \"accountType\": \"current\",\n        \"bankName\": \"string\",\n        \"bankCode\": \"string\",\n        \"bankBranchCode\": \"string\",\n        \"bankBranchName\": \"string\",\n        \"address\": {\n          \"line1\": \"string\",\n          \"line2\": \"string\",\n          \"line3\": \"string\",\n          \"city\": \"string\",\n          \"stateOrProv\": \"string\",\n          \"zipOrPostal\": \"string\",\n          \"countryCode\": \"string\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"customerId\": \"string\",\n      \"status\": \"rejected\",\n      \"errorCode\": \"string\",\n      \"partnerReference\": \"string\",\n      \"paymentReference\": \"string\",\n      \"createdOn\": \"1954-10-16T01:50:22.380Z\",\n      \"lastUpdatedOn\": \"2009-09-21T06:14:21.321Z\",\n      \"paymentMethod\": \"string\",\n      \"amount\": 1406,\n      \"currencyCode\": \"string\",\n      \"settlementAmount\": 1173,\n      \"settlementCurrencyCode\": \"string\",\n      \"chargeType\": \"string\",\n      \"amountReturned\": 85.19266503676958,\n      \"amountReturnedCurrency\": \"string\",\n      \"purposeOfPayment\": \"string\",\n      \"remittanceType\": \"string\",\n      \"beneficiary\": {\n        \"id\": \"string\",\n        \"firstName\": \"string\",\n        \"middleName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"GY8EmfcaD9e@WqywJIsBykEsmPnvqlOoBzgYDavFJ.www\",\n        \"phoneNumber\": \"string\",\n        \"cellNumber\": \"string\",\n        \"dateOfBirth\": \"1960-10-19\",\n        \"gender\": \"F\",\n        \"type\": \"individual\",\n        \"businessName\": \"string\",\n        \"businessRegistrationNumber\": \"string\",\n        \"businessRegistrationCountry\": \"string\",\n        \"taxId\": \"string\",\n        \"address\": {\n          \"line1\": \"string\",\n          \"line2\": \"string\",\n          \"line3\": \"string\",\n          \"city\": \"string\",\n          \"stateOrProv\": \"string\",\n          \"zipOrPostal\": \"string\",\n          \"countryCode\": \"string\"\n        }\n      },\n      \"bankAccount\": {\n        \"id\": \"string\",\n        \"accountNumber\": \"string\",\n        \"accountType\": \"current\",\n        \"bankName\": \"string\",\n        \"bankCode\": \"string\",\n        \"bankBranchCode\": \"string\",\n        \"bankBranchName\": \"string\",\n        \"address\": {\n          \"line1\": \"string\",\n          \"line2\": \"string\",\n          \"line3\": \"string\",\n          \"city\": \"string\",\n          \"stateOrProv\": \"string\",\n          \"zipOrPostal\": \"string\",\n          \"countryCode\": \"string\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0cda3661-eb21-429f-a94f-41e366cbe0f5",
+              "name": "Batch not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "batches",
+                    ":batchId",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batchId",
+                      "description": "(Required) The batch identifier."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a3e510a-fc8e-4db7-be5c-99ce423a0e69",
+          "name": "Add Payment to Batch",
+          "request": {
+            "name": "Add Payment to Batch",
+            "description": {
+              "content": "Adds a single payment to an existing batch. Payments specify amount, currency, beneficiary, and bank account details for international money transfer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":clientId",
+                "batches",
+                ":batchId",
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) The partner's Western Union client ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "batchId",
+                  "description": "(Required) The batch to add the payment to."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\",\n  \"currencyCode\": \"<string>\",\n  \"beneficiary\": {\n    \"id\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"middleName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phoneNumber\": \"<string>\",\n    \"cellNumber\": \"<string>\",\n    \"dateOfBirth\": \"<date>\",\n    \"gender\": \"<string>\",\n    \"type\": \"<string>\",\n    \"businessName\": \"<string>\",\n    \"businessRegistrationNumber\": \"<string>\",\n    \"businessRegistrationCountry\": \"<string>\",\n    \"taxId\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"line3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"stateOrProv\": \"<string>\",\n      \"zipOrPostal\": \"<string>\",\n      \"countryCode\": \"<string>\"\n    }\n  },\n  \"bankAccount\": {\n    \"id\": \"<string>\",\n    \"accountNumber\": \"<string>\",\n    \"accountType\": \"<string>\",\n    \"bankName\": \"<string>\",\n    \"bankCode\": \"<string>\",\n    \"bankBranchCode\": \"<string>\",\n    \"bankBranchName\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"line3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"stateOrProv\": \"<string>\",\n      \"zipOrPostal\": \"<string>\",\n      \"countryCode\": \"<string>\"\n    }\n  },\n  \"partnerReference\": \"<string>\",\n  \"settlementCurrency\": \"<string>\",\n  \"paymentMethod\": \"<string>\",\n  \"purposeOfPayment\": \"<string>\",\n  \"remittanceType\": \"<string>\",\n  \"isFixedAmountInSettlementCurrency\": \"<boolean>\",\n  \"thirdPartyRemitter\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"businessName\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"line3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"stateOrProv\": \"<string>\",\n      \"zipOrPostal\": \"<string>\",\n      \"countryCode\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7f293a8f-6f9c-4154-b891-62395f4abb9a",
+              "name": "Payment added to batch.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "batches",
+                    ":batchId",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batchId",
+                      "description": "(Required) The batch to add the payment to."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"currencyCode\": \"<string>\",\n  \"beneficiary\": {\n    \"id\": \"string\",\n    \"firstName\": \"string\",\n    \"middleName\": \"string\",\n    \"lastName\": \"string\",\n    \"email\": \"cN6a4XX6i5L-kOf@jnaAVYRTNxkUhQupbKS.tif\",\n    \"phoneNumber\": \"string\",\n    \"cellNumber\": \"string\",\n    \"dateOfBirth\": \"1986-07-24\",\n    \"gender\": \"F\",\n    \"type\": \"business\",\n    \"businessName\": \"string\",\n    \"businessRegistrationNumber\": \"string\",\n    \"businessRegistrationCountry\": \"string\",\n    \"taxId\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"line3\": \"string\",\n      \"city\": \"string\",\n      \"stateOrProv\": \"string\",\n      \"zipOrPostal\": \"string\",\n      \"countryCode\": \"string\"\n    }\n  },\n  \"bankAccount\": {\n    \"id\": \"string\",\n    \"accountNumber\": \"string\",\n    \"accountType\": \"current\",\n    \"bankName\": \"string\",\n    \"bankCode\": \"string\",\n    \"bankBranchCode\": \"string\",\n    \"bankBranchName\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"line3\": \"string\",\n      \"city\": \"string\",\n      \"stateOrProv\": \"string\",\n      \"zipOrPostal\": \"string\",\n      \"countryCode\": \"string\"\n    }\n  },\n  \"partnerReference\": \"<string>\",\n  \"settlementCurrency\": \"<string>\",\n  \"paymentMethod\": \"<string>\",\n  \"purposeOfPayment\": \"<string>\",\n  \"remittanceType\": \"<string>\",\n  \"isFixedAmountInSettlementCurrency\": \"<boolean>\",\n  \"thirdPartyRemitter\": {\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"businessName\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"line3\": \"string\",\n      \"city\": \"string\",\n      \"stateOrProv\": \"string\",\n      \"zipOrPostal\": \"string\",\n      \"countryCode\": \"string\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"customerId\": \"string\",\n  \"status\": \"pending\",\n  \"errorCode\": \"string\",\n  \"partnerReference\": \"string\",\n  \"paymentReference\": \"string\",\n  \"createdOn\": \"1998-10-05T10:25:36.900Z\",\n  \"lastUpdatedOn\": \"1967-09-06T07:00:08.308Z\",\n  \"paymentMethod\": \"string\",\n  \"amount\": 4983,\n  \"currencyCode\": \"string\",\n  \"settlementAmount\": 9358,\n  \"settlementCurrencyCode\": \"string\",\n  \"chargeType\": \"string\",\n  \"amountReturned\": 8413.033388375634,\n  \"amountReturnedCurrency\": \"string\",\n  \"purposeOfPayment\": \"string\",\n  \"remittanceType\": \"string\",\n  \"beneficiary\": {\n    \"id\": \"string\",\n    \"firstName\": \"string\",\n    \"middleName\": \"string\",\n    \"lastName\": \"string\",\n    \"email\": \"TXYi8fjuXL@XQywL.bm\",\n    \"phoneNumber\": \"string\",\n    \"cellNumber\": \"string\",\n    \"dateOfBirth\": \"1950-07-29\",\n    \"gender\": \"M\",\n    \"type\": \"business\",\n    \"businessName\": \"string\",\n    \"businessRegistrationNumber\": \"string\",\n    \"businessRegistrationCountry\": \"string\",\n    \"taxId\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"line3\": \"string\",\n      \"city\": \"string\",\n      \"stateOrProv\": \"string\",\n      \"zipOrPostal\": \"string\",\n      \"countryCode\": \"string\"\n    }\n  },\n  \"bankAccount\": {\n    \"id\": \"string\",\n    \"accountNumber\": \"string\",\n    \"accountType\": \"savings\",\n    \"bankName\": \"string\",\n    \"bankCode\": \"string\",\n    \"bankBranchCode\": \"string\",\n    \"bankBranchName\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"line3\": \"string\",\n      \"city\": \"string\",\n      \"stateOrProv\": \"string\",\n      \"zipOrPostal\": \"string\",\n      \"countryCode\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "327a64f0-741f-46e1-9f02-e3a0bc9a63ef",
+              "name": "Invalid payment data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "batches",
+                    ":batchId",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batchId",
+                      "description": "(Required) The batch to add the payment to."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"currencyCode\": \"<string>\",\n  \"beneficiary\": {\n    \"id\": \"string\",\n    \"firstName\": \"string\",\n    \"middleName\": \"string\",\n    \"lastName\": \"string\",\n    \"email\": \"cN6a4XX6i5L-kOf@jnaAVYRTNxkUhQupbKS.tif\",\n    \"phoneNumber\": \"string\",\n    \"cellNumber\": \"string\",\n    \"dateOfBirth\": \"1986-07-24\",\n    \"gender\": \"F\",\n    \"type\": \"business\",\n    \"businessName\": \"string\",\n    \"businessRegistrationNumber\": \"string\",\n    \"businessRegistrationCountry\": \"string\",\n    \"taxId\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"line3\": \"string\",\n      \"city\": \"string\",\n      \"stateOrProv\": \"string\",\n      \"zipOrPostal\": \"string\",\n      \"countryCode\": \"string\"\n    }\n  },\n  \"bankAccount\": {\n    \"id\": \"string\",\n    \"accountNumber\": \"string\",\n    \"accountType\": \"current\",\n    \"bankName\": \"string\",\n    \"bankCode\": \"string\",\n    \"bankBranchCode\": \"string\",\n    \"bankBranchName\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"line3\": \"string\",\n      \"city\": \"string\",\n      \"stateOrProv\": \"string\",\n      \"zipOrPostal\": \"string\",\n      \"countryCode\": \"string\"\n    }\n  },\n  \"partnerReference\": \"<string>\",\n  \"settlementCurrency\": \"<string>\",\n  \"paymentMethod\": \"<string>\",\n  \"purposeOfPayment\": \"<string>\",\n  \"remittanceType\": \"<string>\",\n  \"isFixedAmountInSettlementCurrency\": \"<boolean>\",\n  \"thirdPartyRemitter\": {\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"businessName\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"line3\": \"string\",\n      \"city\": \"string\",\n      \"stateOrProv\": \"string\",\n      \"zipOrPostal\": \"string\",\n      \"countryCode\": \"string\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd1fda5d-b5be-4fcf-b5d8-8c30cc96bc2a",
+          "name": "Get Payment",
+          "request": {
+            "name": "Get Payment",
+            "description": {
+              "content": "Returns the details and current status of a specific payment within a batch.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":clientId",
+                "batches",
+                ":batchId",
+                "payments",
+                ":paymentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) The partner's Western Union client ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "batchId",
+                  "description": "(Required) The batch identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentId",
+                  "description": "(Required) The payment identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "bd1d3f78-3649-4c96-b5f0-4f829ebc5845",
+              "name": "Payment details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "batches",
+                    ":batchId",
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batchId",
+                      "description": "(Required) The batch identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) The payment identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"customerId\": \"string\",\n  \"status\": \"pending\",\n  \"errorCode\": \"string\",\n  \"partnerReference\": \"string\",\n  \"paymentReference\": \"string\",\n  \"createdOn\": \"1998-10-05T10:25:36.900Z\",\n  \"lastUpdatedOn\": \"1967-09-06T07:00:08.308Z\",\n  \"paymentMethod\": \"string\",\n  \"amount\": 4983,\n  \"currencyCode\": \"string\",\n  \"settlementAmount\": 9358,\n  \"settlementCurrencyCode\": \"string\",\n  \"chargeType\": \"string\",\n  \"amountReturned\": 8413.033388375634,\n  \"amountReturnedCurrency\": \"string\",\n  \"purposeOfPayment\": \"string\",\n  \"remittanceType\": \"string\",\n  \"beneficiary\": {\n    \"id\": \"string\",\n    \"firstName\": \"string\",\n    \"middleName\": \"string\",\n    \"lastName\": \"string\",\n    \"email\": \"TXYi8fjuXL@XQywL.bm\",\n    \"phoneNumber\": \"string\",\n    \"cellNumber\": \"string\",\n    \"dateOfBirth\": \"1950-07-29\",\n    \"gender\": \"M\",\n    \"type\": \"business\",\n    \"businessName\": \"string\",\n    \"businessRegistrationNumber\": \"string\",\n    \"businessRegistrationCountry\": \"string\",\n    \"taxId\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"line3\": \"string\",\n      \"city\": \"string\",\n      \"stateOrProv\": \"string\",\n      \"zipOrPostal\": \"string\",\n      \"countryCode\": \"string\"\n    }\n  },\n  \"bankAccount\": {\n    \"id\": \"string\",\n    \"accountNumber\": \"string\",\n    \"accountType\": \"savings\",\n    \"bankName\": \"string\",\n    \"bankCode\": \"string\",\n    \"bankBranchCode\": \"string\",\n    \"bankBranchName\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"line3\": \"string\",\n      \"city\": \"string\",\n      \"stateOrProv\": \"string\",\n      \"zipOrPostal\": \"string\",\n      \"countryCode\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fcb8ebc2-b408-4910-8790-430116c9631c",
+              "name": "Payment not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "batches",
+                    ":batchId",
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batchId",
+                      "description": "(Required) The batch identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) The payment identifier."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "27ec1cb4-1a8a-41e7-acec-0f5ba3682384",
+      "name": "Orders",
+      "description": {
+        "content": "Payment order management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "db907004-dbc4-42d0-a29c-2e54e08c613e",
+          "name": "List Orders",
+          "request": {
+            "name": "List Orders",
+            "description": {
+              "content": "Returns all payment orders for the customer account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":clientId",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) The partner's Western Union client ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "62e8850a-abe2-4863-be8a-88523d4a5785",
+              "name": "List of orders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orders\": [\n    {\n      \"id\": \"string\",\n      \"customerId\": \"string\",\n      \"status\": \"pending\",\n      \"settlementCurrency\": \"string\",\n      \"partnerReference\": \"string\",\n      \"createdOn\": \"1961-12-07T02:12:00.302Z\",\n      \"lastUpdatedOn\": \"1979-10-13T14:27:38.683Z\",\n      \"errorCode\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"customerId\": \"string\",\n      \"status\": \"processed\",\n      \"settlementCurrency\": \"string\",\n      \"partnerReference\": \"string\",\n      \"createdOn\": \"2021-10-23T19:55:28.423Z\",\n      \"lastUpdatedOn\": \"1996-11-15T02:49:26.418Z\",\n      \"errorCode\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21eb001e-5595-4109-8eb3-fe9839cbf3e1",
+          "name": "Get Order",
+          "request": {
+            "name": "Get Order",
+            "description": {
+              "content": "Returns the details and status of a specific payment order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":clientId",
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) The partner's Western Union client ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) The order identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "4c79b7a7-a2da-44c5-9e43-ff86ba45c70d",
+              "name": "Order details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) The order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"customerId\": \"string\",\n  \"status\": \"cancelled\",\n  \"settlementCurrency\": \"string\",\n  \"partnerReference\": \"string\",\n  \"createdOn\": \"1949-10-13T03:15:49.220Z\",\n  \"lastUpdatedOn\": \"2004-04-29T20:22:07.384Z\",\n  \"errorCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c20c056-95cd-47e8-9173-b36779cd8024",
+              "name": "Order not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) The order identifier."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "54f840a1-6678-4362-be75-b4db2da39de5",
+      "name": "Quotes",
+      "description": {
+        "content": "FX rate and payment quote generation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cf69aac7-9696-4555-a716-5505b32fe36d",
+          "name": "Create FX Quote",
+          "request": {
+            "name": "Create FX Quote",
+            "description": {
+              "content": "Generates a foreign exchange rate quote for a currency conversion. The quote includes rate, inverted rate, and settlement details and has a limited validity period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":clientId",
+                "quotes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) The partner's Western Union client ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tradeCurrency\": \"<string>\",\n  \"settlementCurrency\": \"<string>\",\n  \"tradeAmount\": \"<integer>\",\n  \"partnerReference\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a4f93f0d-eddb-4ef2-8f76-76bc2d93ab0c",
+              "name": "FX quote created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tradeCurrency\": \"<string>\",\n  \"settlementCurrency\": \"<string>\",\n  \"tradeAmount\": \"<integer>\",\n  \"partnerReference\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"customerId\": \"string\",\n  \"partnerReference\": \"string\",\n  \"status\": \"used\",\n  \"createdOn\": \"2012-04-15T13:02:37.920Z\",\n  \"lastUpdatedOn\": \"1967-07-21T10:59:05.427Z\",\n  \"expirationIntervalInSec\": 2838,\n  \"quotedItems\": {\n    \"isDirectRate\": false,\n    \"rate\": 2637.777140659315,\n    \"rateInverted\": 5617.576044031597,\n    \"decimalsDirect\": 9156,\n    \"decimalsIndirect\": 8711,\n    \"tradeAmount\": 6142,\n    \"settlementAmount\": 8913,\n    \"tradeCurrency\": \"string\",\n    \"settlementCurrency\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7486af2-a162-4e98-8a50-2b8733d80d3d",
+              "name": "Invalid quote request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tradeCurrency\": \"<string>\",\n  \"settlementCurrency\": \"<string>\",\n  \"tradeAmount\": \"<integer>\",\n  \"partnerReference\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.westernunion.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a612431b-6428-4dfa-945c-8ab9f3d256fd",
+    "name": "Western Union Mass Payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Western Union Mass Payments API enables financial institutions and enterprise customers to send up to 10,000 international payments in a single batch across 130+ currencies in 200+ countries and territories. The API supports payment lifecycle management including batch creation, adding payments, FX quotes, committing, and tracking. Authentication requires mutual TLS (mTLS) client certificates provided by Western Union upon partnership enrollment.\n\nContact Support:\n Name: Western Union Partnership Program\n Email: wuconnect@westernunion.com",
+      "type": "text/plain"
+    }
+  }
+}

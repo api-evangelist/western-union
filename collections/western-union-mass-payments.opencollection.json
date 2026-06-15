@@ -1,0 +1,352 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Western Union Mass Payments API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.westernunion.com/Ping"
+          },
+          "docs": "Verifies the API is available and the client's mTLS credentials are valid. Returns a simple pong response."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.westernunion.com/customers/:clientId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              }
+            ]
+          },
+          "docs": "Returns the account details and configuration for the authenticated Western Union partner/customer."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Balances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Holding Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.westernunion.com/HoldingBalance/:clientId/:currencyCode",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              },
+              {
+                "name": "currencyCode",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 currency code (e.g., USD, EUR, GBP)."
+              }
+            ]
+          },
+          "docs": "Returns the current holding balance for the specified currency in the partner's WU account. Used to verify sufficient funds before initiating payments."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Batches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.westernunion.com/customers/:clientId/batches/:batchId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              },
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "The unique batch identifier."
+              }
+            ]
+          },
+          "docs": "Returns the details and current status of a payment batch, including counts of received and accepted payments and aggregate amounts."
+        },
+        {
+          "info": {
+            "name": "Create Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.westernunion.com/customers/:clientId/batches/:batchId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              },
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "Partner-assigned batch identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new payment batch with the specified batch ID and reference. Payments are added to this batch before committing."
+        },
+        {
+          "info": {
+            "name": "Delete Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.westernunion.com/customers/:clientId/batches/:batchId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              },
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "The batch identifier to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a batch that has not yet been committed. Committed batches cannot be deleted."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Payments in Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.westernunion.com/customers/:clientId/batches/:batchId/payments",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              },
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "The batch identifier."
+              }
+            ]
+          },
+          "docs": "Returns all payments within a specified batch, with their current statuses."
+        },
+        {
+          "info": {
+            "name": "Add Payment to Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.westernunion.com/customers/:clientId/batches/:batchId/payments",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              },
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "The batch to add the payment to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a single payment to an existing batch. Payments specify amount, currency, beneficiary, and bank account details for international money transfer."
+        },
+        {
+          "info": {
+            "name": "Get Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.westernunion.com/customers/:clientId/batches/:batchId/payments/:paymentId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              },
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "The batch identifier."
+              },
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path",
+                "description": "The payment identifier."
+              }
+            ]
+          },
+          "docs": "Returns the details and current status of a specific payment within a batch."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.westernunion.com/customers/:clientId/orders",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              }
+            ]
+          },
+          "docs": "Returns all payment orders for the customer account."
+        },
+        {
+          "info": {
+            "name": "Get Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.westernunion.com/customers/:clientId/orders/:orderId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              },
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The order identifier."
+              }
+            ]
+          },
+          "docs": "Returns the details and status of a specific payment order."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Quotes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create FX Quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.westernunion.com/customers/:clientId/quotes",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a foreign exchange rate quote for a currency conversion. The quote includes rate, inverted rate, and settlement details and has a limited validity period."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
