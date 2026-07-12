@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/western-union-mass-payments-openapi.yml
+summary:
+  types:
+  - mutualTLS
+schemes:
+- name: mtlsAuth
+  type: mutualTLS
+  description: Mutual TLS authentication using client certificates provided by Western Union
+    upon enrollment in the Partnership Program. Include the certificate and key with every request.
+  sources:
+  - openapi/western-union-mass-payments-openapi.yml

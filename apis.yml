@@ -62,6 +62,10 @@ apis:
     contact:
       - FN: Western Union Business Solutions
 common:
+  - type: DomainSecurity
+    url: security/western-union-domain-security.yml
+  - type: Authentication
+    url: authentication/western-union-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/western-union
   - type: Website
