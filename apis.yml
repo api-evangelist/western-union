@@ -62,6 +62,8 @@ apis:
     contact:
       - FN: Western Union Business Solutions
 common:
+  - type: AgenticAccess
+    url: agentic-access/western-union-agentic-access.yml
   - type: DomainSecurity
     url: security/western-union-domain-security.yml
   - type: Authentication
