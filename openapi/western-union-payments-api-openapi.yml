@@ -1,0 +1,327 @@
+openapi: 3.1.0
+info:
+  title: Western Union Mass Balances Payments API
+  description: The Western Union Mass Payments API enables financial institutions and enterprise customers to send up to 10,000 international payments in a single batch across 130+ currencies in 200+ countries and territories. The API supports payment lifecycle management including batch creation, adding payments, FX quotes, committing, and tracking. Authentication requires mutual TLS (mTLS) client certificates provided by Western Union upon partnership enrollment.
+  version: v1
+  contact:
+    name: Western Union Partnership Program
+    url: https://developer.westernunion.com/getting-started.html
+    email: wuconnect@westernunion.com
+  license:
+    name: Western Union Partner Terms
+    url: https://developer.westernunion.com/getting-started.html
+servers:
+- url: https://api.westernunion.com
+  description: Production endpoint
+- url: https://api-sandbox.westernunion.com
+  description: Sandbox for testing
+tags:
+- name: Payments
+  description: Individual payment management within a batch.
+paths:
+  /customers/{clientId}/batches/{batchId}/payments:
+    get:
+      operationId: listPayments
+      summary: List Payments in Batch
+      description: Returns all payments within a specified batch, with their current statuses.
+      tags:
+      - Payments
+      security:
+      - mtlsAuth: []
+      parameters:
+      - name: clientId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The partner's Western Union client ID.
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The batch identifier.
+      responses:
+        '200':
+          description: List of payments in the batch.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentsResponse'
+        '404':
+          description: Batch not found.
+    post:
+      operationId: createPayment
+      summary: Add Payment to Batch
+      description: Adds a single payment to an existing batch. Payments specify amount, currency, beneficiary, and bank account details for international money transfer.
+      tags:
+      - Payments
+      security:
+      - mtlsAuth: []
+      parameters:
+      - name: clientId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The partner's Western Union client ID.
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The batch to add the payment to.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+      responses:
+        '201':
+          description: Payment added to batch.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '400':
+          description: Invalid payment data.
+  /customers/{clientId}/batches/{batchId}/payments/{paymentId}:
+    get:
+      operationId: getPayment
+      summary: Get Payment
+      description: Returns the details and current status of a specific payment within a batch.
+      tags:
+      - Payments
+      security:
+      - mtlsAuth: []
+      parameters:
+      - name: clientId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The partner's Western Union client ID.
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The batch identifier.
+      - name: paymentId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The payment identifier.
+      responses:
+        '200':
+          description: Payment details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '404':
+          description: Payment not found.
+components:
+  schemas:
+    Beneficiary:
+      type: object
+      description: Payment recipient details.
+      properties:
+        id:
+          type: string
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        phoneNumber:
+          type: string
+        cellNumber:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        gender:
+          type: string
+          enum:
+          - M
+          - F
+        type:
+          type: string
+          enum:
+          - individual
+          - business
+        businessName:
+          type: string
+        businessRegistrationNumber:
+          type: string
+        businessRegistrationCountry:
+          type: string
+        taxId:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+    ThirdPartyRemitter:
+      type: object
+      description: Third-party sender information for compliance.
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        businessName:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+    BankAccount:
+      type: object
+      description: Beneficiary bank account details for wire transfer.
+      properties:
+        id:
+          type: string
+        accountNumber:
+          type: string
+        accountType:
+          type: string
+          enum:
+          - checking
+          - savings
+          - current
+        bankName:
+          type: string
+        bankCode:
+          type: string
+          description: SWIFT/BIC code.
+        bankBranchCode:
+          type: string
+        bankBranchName:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+    PaymentResponse:
+      type: object
+      description: Payment details and status.
+      properties:
+        id:
+          type: string
+        customerId:
+          type: string
+        status:
+          type: string
+          enum:
+          - received
+          - accepted
+          - rejected
+          - processed
+          - returned
+          - pending
+        errorCode:
+          type: string
+        partnerReference:
+          type: string
+        paymentReference:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        lastUpdatedOn:
+          type: string
+          format: date-time
+        paymentMethod:
+          type: string
+        amount:
+          type: integer
+        currencyCode:
+          type: string
+        settlementAmount:
+          type: integer
+        settlementCurrencyCode:
+          type: string
+        chargeType:
+          type: string
+        amountReturned:
+          type: number
+        amountReturnedCurrency:
+          type: string
+        purposeOfPayment:
+          type: string
+        remittanceType:
+          type: string
+        beneficiary:
+          $ref: '#/components/schemas/Beneficiary'
+        bankAccount:
+          $ref: '#/components/schemas/BankAccount'
+    PaymentRequest:
+      type: object
+      description: Request body for adding a payment to a batch.
+      properties:
+        partnerReference:
+          type: string
+          description: Partner's internal reference for the payment.
+        amount:
+          type: integer
+          description: Payment amount in minor units (e.g., cents).
+        currencyCode:
+          type: string
+          description: ISO 4217 payment currency code.
+        settlementCurrency:
+          type: string
+          description: ISO 4217 settlement currency code.
+        paymentMethod:
+          type: string
+          enum:
+          - bankTransfer
+          - wireTransfer
+          - swift
+        purposeOfPayment:
+          type: string
+        remittanceType:
+          type: string
+        isFixedAmountInSettlementCurrency:
+          type: boolean
+        beneficiary:
+          $ref: '#/components/schemas/Beneficiary'
+        bankAccount:
+          $ref: '#/components/schemas/BankAccount'
+        thirdPartyRemitter:
+          $ref: '#/components/schemas/ThirdPartyRemitter'
+      required:
+      - amount
+      - currencyCode
+      - beneficiary
+      - bankAccount
+    Address:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        line3:
+          type: string
+        city:
+          type: string
+        stateOrProv:
+          type: string
+        zipOrPostal:
+          type: string
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+    PaymentsResponse:
+      type: object
+      properties:
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentResponse'
+  securitySchemes:
+    mtlsAuth:
+      type: mutualTLS
+      description: Mutual TLS authentication using client certificates provided by Western Union upon enrollment in the Partnership Program. Include the certificate and key with every request.

@@ -1,0 +1,114 @@
+openapi: 3.1.0
+info:
+  title: Western Union Mass Payments Balances Orders API
+  description: The Western Union Mass Payments API enables financial institutions and enterprise customers to send up to 10,000 international payments in a single batch across 130+ currencies in 200+ countries and territories. The API supports payment lifecycle management including batch creation, adding payments, FX quotes, committing, and tracking. Authentication requires mutual TLS (mTLS) client certificates provided by Western Union upon partnership enrollment.
+  version: v1
+  contact:
+    name: Western Union Partnership Program
+    url: https://developer.westernunion.com/getting-started.html
+    email: wuconnect@westernunion.com
+  license:
+    name: Western Union Partner Terms
+    url: https://developer.westernunion.com/getting-started.html
+servers:
+- url: https://api.westernunion.com
+  description: Production endpoint
+- url: https://api-sandbox.westernunion.com
+  description: Sandbox for testing
+tags:
+- name: Orders
+  description: Payment order management.
+paths:
+  /customers/{clientId}/orders:
+    get:
+      operationId: listOrders
+      summary: List Orders
+      description: Returns all payment orders for the customer account.
+      tags:
+      - Orders
+      security:
+      - mtlsAuth: []
+      parameters:
+      - name: clientId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The partner's Western Union client ID.
+      responses:
+        '200':
+          description: List of orders.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrdersResponse'
+  /customers/{clientId}/orders/{orderId}:
+    get:
+      operationId: getOrder
+      summary: Get Order
+      description: Returns the details and status of a specific payment order.
+      tags:
+      - Orders
+      security:
+      - mtlsAuth: []
+      parameters:
+      - name: clientId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The partner's Western Union client ID.
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The order identifier.
+      responses:
+        '200':
+          description: Order details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        '404':
+          description: Order not found.
+components:
+  schemas:
+    OrderResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        customerId:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - processed
+          - rejected
+          - cancelled
+        settlementCurrency:
+          type: string
+        partnerReference:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        lastUpdatedOn:
+          type: string
+          format: date-time
+        errorCode:
+          type: string
+    OrdersResponse:
+      type: object
+      properties:
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderResponse'
+  securitySchemes:
+    mtlsAuth:
+      type: mutualTLS
+      description: Mutual TLS authentication using client certificates provided by Western Union upon enrollment in the Partnership Program. Include the certificate and key with every request.

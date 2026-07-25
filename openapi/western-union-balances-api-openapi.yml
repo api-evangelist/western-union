@@ -1,0 +1,80 @@
+openapi: 3.1.0
+info:
+  title: Western Union Mass Payments Balances API
+  description: The Western Union Mass Payments API enables financial institutions and enterprise customers to send up to 10,000 international payments in a single batch across 130+ currencies in 200+ countries and territories. The API supports payment lifecycle management including batch creation, adding payments, FX quotes, committing, and tracking. Authentication requires mutual TLS (mTLS) client certificates provided by Western Union upon partnership enrollment.
+  version: v1
+  contact:
+    name: Western Union Partnership Program
+    url: https://developer.westernunion.com/getting-started.html
+    email: wuconnect@westernunion.com
+  license:
+    name: Western Union Partner Terms
+    url: https://developer.westernunion.com/getting-started.html
+servers:
+- url: https://api.westernunion.com
+  description: Production endpoint
+- url: https://api-sandbox.westernunion.com
+  description: Sandbox for testing
+tags:
+- name: Balances
+  description: Holding balance inquiry.
+paths:
+  /HoldingBalance/{clientId}/{currencyCode}:
+    get:
+      operationId: getHoldingBalance
+      summary: Get Holding Balance
+      description: Returns the current holding balance for the specified currency in the partner's WU account. Used to verify sufficient funds before initiating payments.
+      tags:
+      - Balances
+      security:
+      - mtlsAuth: []
+      parameters:
+      - name: clientId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The partner's Western Union client ID.
+      - name: currencyCode
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^[A-Z]{3}$
+        description: ISO 4217 currency code (e.g., USD, EUR, GBP).
+      responses:
+        '200':
+          description: Holding balance for the specified currency.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HoldingBalanceResponse'
+        '401':
+          description: Authentication failed.
+        '404':
+          description: Client or currency not found.
+components:
+  schemas:
+    HoldingBalance:
+      type: object
+      properties:
+        currencyCode:
+          type: string
+          description: ISO 4217 currency code.
+        amount:
+          type: number
+          format: double
+          description: Available balance amount.
+    HoldingBalanceResponse:
+      type: object
+      properties:
+        clientId:
+          type: string
+        currencyCode:
+          type: string
+        balance:
+          $ref: '#/components/schemas/HoldingBalance'
+  securitySchemes:
+    mtlsAuth:
+      type: mutualTLS
+      description: Mutual TLS authentication using client certificates provided by Western Union upon enrollment in the Partnership Program. Include the certificate and key with every request.

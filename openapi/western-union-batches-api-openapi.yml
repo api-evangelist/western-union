@@ -1,0 +1,166 @@
+openapi: 3.1.0
+info:
+  title: Western Union Mass Payments Balances Batches API
+  description: The Western Union Mass Payments API enables financial institutions and enterprise customers to send up to 10,000 international payments in a single batch across 130+ currencies in 200+ countries and territories. The API supports payment lifecycle management including batch creation, adding payments, FX quotes, committing, and tracking. Authentication requires mutual TLS (mTLS) client certificates provided by Western Union upon partnership enrollment.
+  version: v1
+  contact:
+    name: Western Union Partnership Program
+    url: https://developer.westernunion.com/getting-started.html
+    email: wuconnect@westernunion.com
+  license:
+    name: Western Union Partner Terms
+    url: https://developer.westernunion.com/getting-started.html
+servers:
+- url: https://api.westernunion.com
+  description: Production endpoint
+- url: https://api-sandbox.westernunion.com
+  description: Sandbox for testing
+tags:
+- name: Batches
+  description: Payment batch lifecycle management.
+paths:
+  /customers/{clientId}/batches/{batchId}:
+    get:
+      operationId: getBatch
+      summary: Get Batch
+      description: Returns the details and current status of a payment batch, including counts of received and accepted payments and aggregate amounts.
+      tags:
+      - Batches
+      security:
+      - mtlsAuth: []
+      parameters:
+      - name: clientId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The partner's Western Union client ID.
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique batch identifier.
+      responses:
+        '200':
+          description: Batch details and status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchResponse'
+        '404':
+          description: Batch not found.
+    put:
+      operationId: createBatch
+      summary: Create Batch
+      description: Creates a new payment batch with the specified batch ID and reference. Payments are added to this batch before committing.
+      tags:
+      - Batches
+      security:
+      - mtlsAuth: []
+      parameters:
+      - name: clientId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The partner's Western Union client ID.
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Partner-assigned batch identifier.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reference:
+                  type: string
+                  description: Partner's internal reference for the batch.
+              required:
+              - reference
+      responses:
+        '200':
+          description: Batch created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchResponse'
+        '400':
+          description: Invalid request.
+    delete:
+      operationId: deleteBatch
+      summary: Delete Batch
+      description: Deletes a batch that has not yet been committed. Committed batches cannot be deleted.
+      tags:
+      - Batches
+      security:
+      - mtlsAuth: []
+      parameters:
+      - name: clientId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The partner's Western Union client ID.
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The batch identifier to delete.
+      responses:
+        '204':
+          description: Batch deleted successfully.
+        '404':
+          description: Batch not found.
+components:
+  schemas:
+    BatchResponse:
+      type: object
+      description: Payment batch details.
+      properties:
+        id:
+          type: string
+          description: Batch identifier.
+        reference:
+          type: string
+          description: Partner's internal reference.
+        createdOn:
+          type: string
+          format: date-time
+        lastUpdatedOn:
+          type: string
+          format: date-time
+        numberOfReceivedPayments:
+          type: integer
+          description: Total payments received in the batch.
+        numberOfAcceptedPayments:
+          type: integer
+          description: Payments accepted for processing.
+        aggregateAmounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AggregateAmount'
+      required:
+      - id
+      - reference
+      - createdOn
+      - numberOfReceivedPayments
+      - numberOfAcceptedPayments
+    AggregateAmount:
+      type: object
+      properties:
+        currencyCode:
+          type: string
+        totalAmount:
+          type: number
+          format: double
+  securitySchemes:
+    mtlsAuth:
+      type: mutualTLS
+      description: Mutual TLS authentication using client certificates provided by Western Union upon enrollment in the Partnership Program. Include the certificate and key with every request.
