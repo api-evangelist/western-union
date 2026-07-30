@@ -1,4 +1,18 @@
 aid: western-union
+accessModel:
+  pricing: enterprise
+  onboarding: approval
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Requires approval
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/western-union.png
 tags:
   - Fortune 500
 url: https://raw.githubusercontent.com/api-evangelist/western-union/refs/heads/main/apis.yml
@@ -10,57 +24,140 @@ description: >-
   for money transfers, batch payments, FX quotes, and account management across 200+ countries and territories in 130+
   currencies. Authentication uses mTLS with client certificates.
 apis:
-  - aid: western-union:mass-payments
-    name: Western Union Mass Payments API
-    description: >-
-      The Western Union Mass Payments API enables financial institutions and enterprise customers to send up to 10,000
-      international payments in a single batch across 130+ currencies. The API supports payment lifecycle management
-      including creating batches, adding individual payments, committing batches, and tracking payment status.
-      Authentication is via mTLS (mutual TLS) with client certificates.
-    humanURL: https://developer.westernunion.com/api-money-transfer.html
-    baseURL: https://api.westernunion.com
-    tags:
-      - Money Transfer
-      - Payments
-      - International
-      - Batch Payments
-      - Financial Services
-    properties:
-      - type: Documentation
-        url: https://developer.westernunion.com/api-money-transfer.html
-      - type: Portal
-        url: https://developer.westernunion.com/getting-started.html
-      - type: OpenAPI
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/western-union/refs/heads/main/openapi/western-union-mass-payments-openapi.yml
-      - type: GettingStarted
-        url: https://developer.westernunion.com/getting-started.html
-    contact:
-      - FN: Western Union Partnership Program
-        url: https://developer.westernunion.com/getting-started.html
-        email: wuconnect@westernunion.com
-  - aid: western-union:open-banking
-    name: Western Union Open Banking API
-    description: >-
-      Western Union's PSD2-compliant Open Banking API enables Payment Service Providers to access account information
-      (AIS) and initiate payments (PIS) in compliance with European Payment Services Directive 2 (PSD2). The API
-      supports Strong Customer Authentication (SCA) and integrates with the WU Business Solutions global payment
-      network.
-    humanURL: https://wu-priora.saltedge.com/
-    baseURL: https://wu-priora.saltedge.com
-    tags:
-      - Open Banking
-      - PSD2
-      - Account Information
-      - Payment Initiation
-      - Financial Services
-    properties:
-      - type: Portal
-        url: https://wu-priora.saltedge.com/
-      - type: Documentation
-        url: https://wu-priora.saltedge.com/
-    contact:
-      - FN: Western Union Business Solutions
+- aid: western-union:open-banking
+  name: Western Union Open Banking API
+  description: >-
+    Western Union's PSD2-compliant Open Banking API enables Payment Service Providers to access account
+    information (AIS) and initiate payments (PIS) in compliance with European Payment Services Directive
+    2 (PSD2). The API supports Strong Customer Authentication (SCA) and integrates with the WU Business
+    Solutions global payment network.
+  humanURL: https://wu-priora.saltedge.com/
+  baseURL: https://wu-priora.saltedge.com
+  tags:
+  - Open Banking
+  - PSD2
+  - Account Information
+  - Payment Initiation
+  - Financial Services
+  properties:
+  - type: Portal
+    url: https://wu-priora.saltedge.com/
+  - type: Documentation
+    url: https://wu-priora.saltedge.com/
+  contact:
+  - FN: Western Union Business Solutions
+- aid: western-union:western-union-balances-api
+  name: western-union Balances API
+  description: Holding balance inquiry.
+  humanURL: https://developer.westernunion.com/api-money-transfer.html
+  baseURL: https://api.westernunion.com
+  tags:
+  - Balances
+  properties:
+  - type: OpenAPI
+    url: openapi/western-union-balances-api-openapi.yml
+  - type: Documentation
+    url: https://developer.westernunion.com/api-money-transfer.html
+  - type: Portal
+    url: https://developer.westernunion.com/getting-started.html
+  - type: GettingStarted
+    url: https://developer.westernunion.com/getting-started.html
+- aid: western-union:western-union-batches-api
+  name: western-union Batches API
+  description: Payment batch lifecycle management.
+  humanURL: https://developer.westernunion.com/api-money-transfer.html
+  baseURL: https://api.westernunion.com
+  tags:
+  - Batches
+  properties:
+  - type: OpenAPI
+    url: openapi/western-union-batches-api-openapi.yml
+  - type: Documentation
+    url: https://developer.westernunion.com/api-money-transfer.html
+  - type: Portal
+    url: https://developer.westernunion.com/getting-started.html
+  - type: GettingStarted
+    url: https://developer.westernunion.com/getting-started.html
+- aid: western-union:western-union-customers-api
+  name: western-union Customers API
+  description: Customer account management.
+  humanURL: https://developer.westernunion.com/api-money-transfer.html
+  baseURL: https://api.westernunion.com
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/western-union-customers-api-openapi.yml
+  - type: Documentation
+    url: https://developer.westernunion.com/api-money-transfer.html
+  - type: Portal
+    url: https://developer.westernunion.com/getting-started.html
+  - type: GettingStarted
+    url: https://developer.westernunion.com/getting-started.html
+- aid: western-union:western-union-health-api
+  name: western-union Health API
+  description: API health check.
+  humanURL: https://developer.westernunion.com/api-money-transfer.html
+  baseURL: https://api.westernunion.com
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/western-union-health-api-openapi.yml
+  - type: Documentation
+    url: https://developer.westernunion.com/api-money-transfer.html
+  - type: Portal
+    url: https://developer.westernunion.com/getting-started.html
+  - type: GettingStarted
+    url: https://developer.westernunion.com/getting-started.html
+- aid: western-union:western-union-orders-api
+  name: western-union Orders API
+  description: Payment order management.
+  humanURL: https://developer.westernunion.com/api-money-transfer.html
+  baseURL: https://api.westernunion.com
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/western-union-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developer.westernunion.com/api-money-transfer.html
+  - type: Portal
+    url: https://developer.westernunion.com/getting-started.html
+  - type: GettingStarted
+    url: https://developer.westernunion.com/getting-started.html
+- aid: western-union:western-union-payments-api
+  name: western-union Payments API
+  description: Individual payment management within a batch.
+  humanURL: https://developer.westernunion.com/api-money-transfer.html
+  baseURL: https://api.westernunion.com
+  tags:
+  - Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/western-union-payments-api-openapi.yml
+  - type: Documentation
+    url: https://developer.westernunion.com/api-money-transfer.html
+  - type: Portal
+    url: https://developer.westernunion.com/getting-started.html
+  - type: GettingStarted
+    url: https://developer.westernunion.com/getting-started.html
+- aid: western-union:western-union-quotes-api
+  name: western-union Quotes API
+  description: FX rate and payment quote generation.
+  humanURL: https://developer.westernunion.com/api-money-transfer.html
+  baseURL: https://api.westernunion.com
+  tags:
+  - Quotes
+  properties:
+  - type: OpenAPI
+    url: openapi/western-union-quotes-api-openapi.yml
+  - type: Documentation
+    url: https://developer.westernunion.com/api-money-transfer.html
+  - type: Portal
+    url: https://developer.westernunion.com/getting-started.html
+  - type: GettingStarted
+    url: https://developer.westernunion.com/getting-started.html
 common:
   - type: AgenticAccess
     url: agentic-access/western-union-agentic-access.yml
