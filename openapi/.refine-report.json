@@ -1,0 +1,26 @@
+{
+  "provider": "western-union",
+  "sources": [
+    "western-union-balances-api-openapi.yml",
+    "western-union-batches-api-openapi.yml",
+    "western-union-customers-api-openapi.yml",
+    "western-union-health-api-openapi.yml",
+    "western-union-orders-api-openapi.yml",
+    "western-union-payments-api-openapi.yml",
+    "western-union-quotes-api-openapi.yml"
+  ],
+  "outputs": [
+    "western-union-balances-api-openapi.yml",
+    "western-union-batches-api-openapi.yml",
+    "western-union-customers-api-openapi.yml",
+    "western-union-health-api-openapi.yml",
+    "western-union-orders-api-openapi.yml",
+    "western-union-payments-api-openapi.yml",
+    "western-union-quotes-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
