@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Western Union Mass Payments Balances Batches API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Batches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.westernunion.com/customers/:clientId/batches/:batchId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              },
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "The unique batch identifier."
+              }
+            ]
+          },
+          "docs": "Returns the details and current status of a payment batch, including counts of received and accepted payments and aggregate amounts."
+        },
+        {
+          "info": {
+            "name": "Create Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.westernunion.com/customers/:clientId/batches/:batchId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              },
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "Partner-assigned batch identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new payment batch with the specified batch ID and reference. Payments are added to this batch before committing."
+        },
+        {
+          "info": {
+            "name": "Delete Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.westernunion.com/customers/:clientId/batches/:batchId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              },
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "The batch identifier to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a batch that has not yet been committed. Committed batches cannot be deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

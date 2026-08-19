@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Western Union Mass Balances Payments API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Payments in Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.westernunion.com/customers/:clientId/batches/:batchId/payments",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              },
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "The batch identifier."
+              }
+            ]
+          },
+          "docs": "Returns all payments within a specified batch, with their current statuses."
+        },
+        {
+          "info": {
+            "name": "Add Payment to Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.westernunion.com/customers/:clientId/batches/:batchId/payments",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              },
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "The batch to add the payment to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a single payment to an existing batch. Payments specify amount, currency, beneficiary, and bank account details for international money transfer."
+        },
+        {
+          "info": {
+            "name": "Get Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.westernunion.com/customers/:clientId/batches/:batchId/payments/:paymentId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              },
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "The batch identifier."
+              },
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path",
+                "description": "The payment identifier."
+              }
+            ]
+          },
+          "docs": "Returns the details and current status of a specific payment within a batch."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Western Union Mass Payments Balances Quotes API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Quotes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create FX Quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.westernunion.com/customers/:clientId/quotes",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a foreign exchange rate quote for a currency conversion. The quote includes rate, inverted rate, and settlement details and has a limited validity period."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

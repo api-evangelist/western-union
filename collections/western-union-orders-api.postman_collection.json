@@ -1,0 +1,273 @@
+{
+  "item": [
+    {
+      "id": "620d2bd2-f58f-46fb-85e1-60eb9908c2ce",
+      "name": "Orders",
+      "description": {
+        "content": "Payment order management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "85daf013-60b5-497c-bfc6-5c812dc8ae04",
+          "name": "List Orders",
+          "request": {
+            "name": "List Orders",
+            "description": {
+              "content": "Returns all payment orders for the customer account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":clientId",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) The partner's Western Union client ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "e40cd981-e32e-427b-a898-1578aee4dcb8",
+              "name": "List of orders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orders\": [\n    {\n      \"id\": \"string\",\n      \"customerId\": \"string\",\n      \"status\": \"processed\",\n      \"settlementCurrency\": \"string\",\n      \"partnerReference\": \"string\",\n      \"createdOn\": \"1969-08-15T17:44:58.362Z\",\n      \"lastUpdatedOn\": \"2019-11-10T17:42:03.025Z\",\n      \"errorCode\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"customerId\": \"string\",\n      \"status\": \"pending\",\n      \"settlementCurrency\": \"string\",\n      \"partnerReference\": \"string\",\n      \"createdOn\": \"1983-05-08T16:12:00.135Z\",\n      \"lastUpdatedOn\": \"1982-09-09T11:27:40.805Z\",\n      \"errorCode\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7af9b1e5-07e7-44f6-9e7e-5269c47f06bb",
+          "name": "Get Order",
+          "request": {
+            "name": "Get Order",
+            "description": {
+              "content": "Returns the details and status of a specific payment order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":clientId",
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) The partner's Western Union client ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) The order identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "22e15281-d022-401a-98e9-4ac143b68d8b",
+              "name": "Order details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) The order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"customerId\": \"string\",\n  \"status\": \"rejected\",\n  \"settlementCurrency\": \"string\",\n  \"partnerReference\": \"string\",\n  \"createdOn\": \"2008-08-14T18:54:29.532Z\",\n  \"lastUpdatedOn\": \"1956-03-29T13:49:58.317Z\",\n  \"errorCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "742edcab-8e70-461c-8267-e9f61715ff48",
+              "name": "Order not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) The order identifier."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.westernunion.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9dcb9a53-6805-4964-b1a3-f5a42342f53c",
+    "name": "Western Union Mass Payments Balances Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Western Union Mass Payments API enables financial institutions and enterprise customers to send up to 10,000 international payments in a single batch across 130+ currencies in 200+ countries and territories. The API supports payment lifecycle management including batch creation, adding payments, FX quotes, committing, and tracking. Authentication requires mutual TLS (mTLS) client certificates provided by Western Union upon partnership enrollment.\n\nContact Support:\n Name: Western Union Partnership Program\n Email: wuconnect@westernunion.com",
+      "type": "text/plain"
+    }
+  }
+}

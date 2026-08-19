@@ -1,0 +1,227 @@
+{
+  "item": [
+    {
+      "id": "a8ef11ba-d343-4d5b-8225-8dae822b214e",
+      "name": "Balances",
+      "description": {
+        "content": "Holding balance inquiry.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "81992b3d-ce08-44a8-974f-0123399bd97b",
+          "name": "Get Holding Balance",
+          "request": {
+            "name": "Get Holding Balance",
+            "description": {
+              "content": "Returns the current holding balance for the specified currency in the partner's WU account. Used to verify sufficient funds before initiating payments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "HoldingBalance",
+                ":clientId",
+                ":currencyCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) The partner's Western Union client ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "currencyCode",
+                  "description": "(Required) ISO 4217 currency code (e.g., USD, EUR, GBP)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "e25908e1-9ad6-4217-b03a-a86eefa88055",
+              "name": "Holding balance for the specified currency.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "HoldingBalance",
+                    ":clientId",
+                    ":currencyCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currencyCode",
+                      "description": "(Required) ISO 4217 currency code (e.g., USD, EUR, GBP)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"clientId\": \"string\",\n  \"currencyCode\": \"string\",\n  \"balance\": {\n    \"currencyCode\": \"string\",\n    \"amount\": 5835.784451182576\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11cbb9dc-179c-4e65-b0ac-c2fc0a3abf72",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "HoldingBalance",
+                    ":clientId",
+                    ":currencyCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currencyCode",
+                      "description": "(Required) ISO 4217 currency code (e.g., USD, EUR, GBP)."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bd3fae4b-8d61-4b13-8406-eda823d26df9",
+              "name": "Client or currency not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "HoldingBalance",
+                    ":clientId",
+                    ":currencyCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currencyCode",
+                      "description": "(Required) ISO 4217 currency code (e.g., USD, EUR, GBP)."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.westernunion.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "efa1a5b2-b6f6-437d-bbf2-aed1693d660e",
+    "name": "Western Union Mass Payments Balances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Western Union Mass Payments API enables financial institutions and enterprise customers to send up to 10,000 international payments in a single batch across 130+ currencies in 200+ countries and territories. The API supports payment lifecycle management including batch creation, adding payments, FX quotes, committing, and tracking. Authentication requires mutual TLS (mTLS) client certificates provided by Western Union upon partnership enrollment.\n\nContact Support:\n Name: Western Union Partnership Program\n Email: wuconnect@westernunion.com",
+      "type": "text/plain"
+    }
+  }
+}

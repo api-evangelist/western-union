@@ -1,0 +1,189 @@
+{
+  "item": [
+    {
+      "id": "199a5058-9ffc-44c8-9edb-016fc9bf6fa7",
+      "name": "Quotes",
+      "description": {
+        "content": "FX rate and payment quote generation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6ecedcfd-413f-4c4b-bf27-6808cdbc2de4",
+          "name": "Create FX Quote",
+          "request": {
+            "name": "Create FX Quote",
+            "description": {
+              "content": "Generates a foreign exchange rate quote for a currency conversion. The quote includes rate, inverted rate, and settlement details and has a limited validity period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":clientId",
+                "quotes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) The partner's Western Union client ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tradeCurrency\": \"<string>\",\n  \"settlementCurrency\": \"<string>\",\n  \"tradeAmount\": \"<integer>\",\n  \"partnerReference\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3fd066a9-9580-4357-b1a9-9e2d9171df79",
+              "name": "FX quote created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tradeCurrency\": \"<string>\",\n  \"settlementCurrency\": \"<string>\",\n  \"tradeAmount\": \"<integer>\",\n  \"partnerReference\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"customerId\": \"string\",\n  \"partnerReference\": \"string\",\n  \"status\": \"active\",\n  \"createdOn\": \"2021-03-28T12:36:53.419Z\",\n  \"lastUpdatedOn\": \"2009-09-07T12:44:01.626Z\",\n  \"expirationIntervalInSec\": 5456,\n  \"quotedItems\": {\n    \"isDirectRate\": false,\n    \"rate\": 7803.738874618669,\n    \"rateInverted\": 7135.70635382654,\n    \"decimalsDirect\": 800,\n    \"decimalsIndirect\": 7529,\n    \"tradeAmount\": 3316,\n    \"settlementAmount\": 8839,\n    \"tradeCurrency\": \"string\",\n    \"settlementCurrency\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "749c803c-23da-42d5-a302-87af9b877047",
+              "name": "Invalid quote request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":clientId",
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The partner's Western Union client ID."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tradeCurrency\": \"<string>\",\n  \"settlementCurrency\": \"<string>\",\n  \"tradeAmount\": \"<integer>\",\n  \"partnerReference\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.westernunion.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f11def76-20fe-47dc-bb03-8d36226c5086",
+    "name": "Western Union Mass Payments Balances Quotes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Western Union Mass Payments API enables financial institutions and enterprise customers to send up to 10,000 international payments in a single batch across 130+ currencies in 200+ countries and territories. The API supports payment lifecycle management including batch creation, adding payments, FX quotes, committing, and tracking. Authentication requires mutual TLS (mTLS) client certificates provided by Western Union upon partnership enrollment.\n\nContact Support:\n Name: Western Union Partnership Program\n Email: wuconnect@westernunion.com",
+      "type": "text/plain"
+    }
+  }
+}

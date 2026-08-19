@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Western Union Mass Payments Balances API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Balances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Holding Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.westernunion.com/HoldingBalance/:clientId/:currencyCode",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "The partner's Western Union client ID."
+              },
+              {
+                "name": "currencyCode",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 currency code (e.g., USD, EUR, GBP)."
+              }
+            ]
+          },
+          "docs": "Returns the current holding balance for the specified currency in the partner's WU account. Used to verify sufficient funds before initiating payments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
