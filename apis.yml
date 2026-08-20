@@ -39,6 +39,12 @@ apis:
   - PSD2
   - Account Information
   - Payment Initiation
+  - Financial-Services
+  tags_raw:
+  - Open Banking
+  - PSD2
+  - Account Information
+  - Payment Initiation
   - Financial Services
   properties:
   - type: Portal
@@ -117,6 +123,8 @@ apis:
   humanURL: https://developer.westernunion.com/api-money-transfer.html
   baseURL: https://api.westernunion.com
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
