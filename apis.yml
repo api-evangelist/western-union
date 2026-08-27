@@ -1,4 +1,5 @@
 aid: western-union
+name: "The Western Union Company"
 specificationVersion: '0.23'
 accessModel:
   pricing: enterprise
