@@ -181,6 +181,9 @@ apis:
   - type: GettingStarted
     url: https://developer.westernunion.com/getting-started.html
 common:
+  - type: CapabilityMap
+    url: capabilities/western-union-capability-edges.yml
+    name: The Western Union Company Business Capability Map
   - type: AgenticAccess
     url: agentic-access/western-union-agentic-access.yml
   - type: DomainSecurity
