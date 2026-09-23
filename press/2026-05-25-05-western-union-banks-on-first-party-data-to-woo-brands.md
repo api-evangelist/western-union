@@ -1,7 +1,9 @@
 ---
 title: Western Union Banks On First-Party Data To Woo Brands ...
 url: https://www.adexchanger.com/commerce/western-union-is-banking-on-first-party-data-to-woo-brands-to-its-new-media-network/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Western Union" press release artificial intelligence'
 position: 5
 source: serpapi-google

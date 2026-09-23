@@ -1,7 +1,9 @@
 ---
 title: Western Union Builds on Accelerator Momentum with New ...
 url: https://ir.westernunion.com/news/archived-press-releases/press-release-details/2019/Western-Union-Builds-on-Accelerator-Momentum-with-New-Artificial-Intelligence-Projects/default.aspx
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Western Union" press release artificial intelligence'
 position: 1
 source: serpapi-google
