@@ -52,6 +52,31 @@ paths:
           description: Invalid quote request.
 components:
   schemas:
+    QuotedItem:
+      type: object
+      properties:
+        isDirectRate:
+          type: boolean
+        rate:
+          type: number
+          format: double
+          description: FX rate (trade to settlement).
+        rateInverted:
+          type: number
+          format: double
+          description: Inverted FX rate.
+        decimalsDirect:
+          type: integer
+        decimalsIndirect:
+          type: integer
+        tradeAmount:
+          type: integer
+        settlementAmount:
+          type: integer
+        tradeCurrency:
+          type: string
+        settlementCurrency:
+          type: string
     QuoteResponse:
       type: object
       properties:
@@ -96,31 +121,6 @@ components:
       - tradeCurrency
       - settlementCurrency
       - tradeAmount
-    QuotedItem:
-      type: object
-      properties:
-        isDirectRate:
-          type: boolean
-        rate:
-          type: number
-          format: double
-          description: FX rate (trade to settlement).
-        rateInverted:
-          type: number
-          format: double
-          description: Inverted FX rate.
-        decimalsDirect:
-          type: integer
-        decimalsIndirect:
-          type: integer
-        tradeAmount:
-          type: integer
-        settlementAmount:
-          type: integer
-        tradeCurrency:
-          type: string
-        settlementCurrency:
-          type: string
   securitySchemes:
     mtlsAuth:
       type: mutualTLS
