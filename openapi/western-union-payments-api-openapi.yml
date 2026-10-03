@@ -125,117 +125,6 @@ paths:
           description: Payment not found.
 components:
   schemas:
-    Beneficiary:
-      type: object
-      description: Payment recipient details.
-      properties:
-        id:
-          type: string
-        firstName:
-          type: string
-        middleName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-          format: email
-        phoneNumber:
-          type: string
-        cellNumber:
-          type: string
-        dateOfBirth:
-          type: string
-          format: date
-        gender:
-          type: string
-          enum:
-          - M
-          - F
-        type:
-          type: string
-          enum:
-          - individual
-          - business
-        businessName:
-          type: string
-        businessRegistrationNumber:
-          type: string
-        businessRegistrationCountry:
-          type: string
-        taxId:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-    Address:
-      type: object
-      properties:
-        line1:
-          type: string
-        line2:
-          type: string
-        line3:
-          type: string
-        city:
-          type: string
-        stateOrProv:
-          type: string
-        zipOrPostal:
-          type: string
-        countryCode:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-    PaymentRequest:
-      type: object
-      description: Request body for adding a payment to a batch.
-      properties:
-        partnerReference:
-          type: string
-          description: Partner's internal reference for the payment.
-        amount:
-          type: integer
-          description: Payment amount in minor units (e.g., cents).
-        currencyCode:
-          type: string
-          description: ISO 4217 payment currency code.
-        settlementCurrency:
-          type: string
-          description: ISO 4217 settlement currency code.
-        paymentMethod:
-          type: string
-          enum:
-          - bankTransfer
-          - wireTransfer
-          - swift
-        purposeOfPayment:
-          type: string
-        remittanceType:
-          type: string
-        isFixedAmountInSettlementCurrency:
-          type: boolean
-        beneficiary:
-          $ref: '#/components/schemas/Beneficiary'
-        bankAccount:
-          $ref: '#/components/schemas/BankAccount'
-        thirdPartyRemitter:
-          $ref: '#/components/schemas/ThirdPartyRemitter'
-      required:
-      - amount
-      - currencyCode
-      - beneficiary
-      - bankAccount
-    ThirdPartyRemitter:
-      type: object
-      description: Third-party sender information for compliance.
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        businessName:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
     PaymentResponse:
       type: object
       description: Payment details and status.
@@ -289,6 +178,106 @@ components:
           $ref: '#/components/schemas/Beneficiary'
         bankAccount:
           $ref: '#/components/schemas/BankAccount'
+    PaymentsResponse:
+      type: object
+      properties:
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentResponse'
+    PaymentRequest:
+      type: object
+      description: Request body for adding a payment to a batch.
+      properties:
+        partnerReference:
+          type: string
+          description: Partner's internal reference for the payment.
+        amount:
+          type: integer
+          description: Payment amount in minor units (e.g., cents).
+        currencyCode:
+          type: string
+          description: ISO 4217 payment currency code.
+        settlementCurrency:
+          type: string
+          description: ISO 4217 settlement currency code.
+        paymentMethod:
+          type: string
+          enum:
+          - bankTransfer
+          - wireTransfer
+          - swift
+        purposeOfPayment:
+          type: string
+        remittanceType:
+          type: string
+        isFixedAmountInSettlementCurrency:
+          type: boolean
+        beneficiary:
+          $ref: '#/components/schemas/Beneficiary'
+        bankAccount:
+          $ref: '#/components/schemas/BankAccount'
+        thirdPartyRemitter:
+          $ref: '#/components/schemas/ThirdPartyRemitter'
+      required:
+      - amount
+      - currencyCode
+      - beneficiary
+      - bankAccount
+    Beneficiary:
+      type: object
+      description: Payment recipient details.
+      properties:
+        id:
+          type: string
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        phoneNumber:
+          type: string
+        cellNumber:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        gender:
+          type: string
+          enum:
+          - M
+          - F
+        type:
+          type: string
+          enum:
+          - individual
+          - business
+        businessName:
+          type: string
+        businessRegistrationNumber:
+          type: string
+        businessRegistrationCountry:
+          type: string
+        taxId:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+    ThirdPartyRemitter:
+      type: object
+      description: Third-party sender information for compliance.
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        businessName:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
     BankAccount:
       type: object
       description: Beneficiary bank account details for wire transfer.
@@ -314,13 +303,24 @@ components:
           type: string
         address:
           $ref: '#/components/schemas/Address'
-    PaymentsResponse:
+    Address:
       type: object
       properties:
-        payments:
-          type: array
-          items:
-            $ref: '#/components/schemas/PaymentResponse'
+        line1:
+          type: string
+        line2:
+          type: string
+        line3:
+          type: string
+        city:
+          type: string
+        stateOrProv:
+          type: string
+        zipOrPostal:
+          type: string
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
   securitySchemes:
     mtlsAuth:
       type: mutualTLS
