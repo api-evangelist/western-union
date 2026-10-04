@@ -29,6 +29,14 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/western-union.png
 tags:
   - Fortune 500
+  - Financial Services
+  - Payments
+  - Money Transfer
+  - Remittances
+  - Cross-Border Payments
+  - Foreign Exchange
+  - Open Banking
+  - United States
 url: https://raw.githubusercontent.com/api-evangelist/western-union/refs/heads/main/apis.yml
 modified: '2026-05-19'
 description: >-
