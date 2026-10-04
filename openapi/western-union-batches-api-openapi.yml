@@ -120,6 +120,14 @@ paths:
           description: Batch not found.
 components:
   schemas:
+    AggregateAmount:
+      type: object
+      properties:
+        currencyCode:
+          type: string
+        totalAmount:
+          type: number
+          format: double
     BatchResponse:
       type: object
       description: Payment batch details.
@@ -152,14 +160,6 @@ components:
       - createdOn
       - numberOfReceivedPayments
       - numberOfAcceptedPayments
-    AggregateAmount:
-      type: object
-      properties:
-        currencyCode:
-          type: string
-        totalAmount:
-          type: number
-          format: double
   securitySchemes:
     mtlsAuth:
       type: mutualTLS
