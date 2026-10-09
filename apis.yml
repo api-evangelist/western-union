@@ -190,6 +190,12 @@ apis:
   - type: GettingStarted
     url: https://developer.westernunion.com/getting-started.html
 common:
+  - type: Plans
+    url: plans/western-union-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/western-union-rate-limits.yml
+  - type: FinOps
+    url: finops/western-union-finops.yml
   - type: CapabilityMap
     url: capabilities/western-union-capability-edges.yml
     name: The Western Union Company Business Capability Map
