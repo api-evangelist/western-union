@@ -1,0 +1,18 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/western-union/integrations
+- https://zapier.com/apps/the-western-union-company/integrations
+- https://n8n.io/integrations/western-union/
+- https://composio.dev/toolkits/western-union
+- https://monid.ai/tools/western-union
+checked:
+- https://composio.dev/toolkits/western-union
+- https://monid.ai/tools/western-union
+- https://n8n.io/integrations/western-union/
+- https://zapier.com/apps/the-western-union-company/integrations
+- https://zapier.com/apps/western-union/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
