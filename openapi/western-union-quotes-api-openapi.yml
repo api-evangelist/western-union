@@ -52,24 +52,6 @@ paths:
           description: Invalid quote request.
 components:
   schemas:
-    QuoteRequest:
-      type: object
-      properties:
-        tradeCurrency:
-          type: string
-          description: Source currency ISO 4217 code.
-        settlementCurrency:
-          type: string
-          description: Destination currency ISO 4217 code.
-        tradeAmount:
-          type: integer
-          description: Amount to convert in minor units.
-        partnerReference:
-          type: string
-      required:
-      - tradeCurrency
-      - settlementCurrency
-      - tradeAmount
     QuoteResponse:
       type: object
       properties:
@@ -121,6 +103,24 @@ components:
           type: string
         settlementCurrency:
           type: string
+    QuoteRequest:
+      type: object
+      properties:
+        tradeCurrency:
+          type: string
+          description: Source currency ISO 4217 code.
+        settlementCurrency:
+          type: string
+          description: Destination currency ISO 4217 code.
+        tradeAmount:
+          type: integer
+          description: Amount to convert in minor units.
+        partnerReference:
+          type: string
+      required:
+      - tradeCurrency
+      - settlementCurrency
+      - tradeAmount
   securitySchemes:
     mtlsAuth:
       type: mutualTLS
