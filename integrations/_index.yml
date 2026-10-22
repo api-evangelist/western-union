@@ -68,3 +68,41 @@
     identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
   status: not-a-workflow
   arazzo: null
+- slug: western-union-bank-of-canada-rpaa-registry-of-payment-service-providers
+  label: Bank of Canada RPAA registry of payment service providers
+  partner_name: Bank of Canada RPAA registry of payment service providers
+  category: Canadian retail payment activities (RPAA) PSP registration
+  type: register
+  channel: regulator-register
+  evidence: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Bank of Canada RPAA registry of payment service providers
+    spec_file: null
+    standard: null
+    role: registered-psp
+    registrations:
+    - registered_name: Western Union Financial Services (Canada), Inc./Services Financiers Western Union (Canada),
+        Inc.
+      register_status: registered
+      register_country: US
+      register_id: e67b4ae9-5998-ef11-8a69-6045bd6034d0
+      matched_domain: westernunion.com
+      matched_by: domain
+      evidence_url: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/psp-registry-details/?account_id=e67b4ae9-5998-ef11-8a69-6045bd6034d0
+      licences:
+      - RPAA registered PSP
+      registration_date: '2026-07-14'
+      head_office_country: United States of America (the)
+      payment_functions:
+      - The initiation of an electronic funds transfer at the request of an end user
+      - Authorization or Transmission, Reception or Facilitation of an instruction in relation to an electronic
+        funds transfer
+      has_violations: false
+    signal_note: 'participation only: a regulator registration / payment-system membership; no API conformance is
+      published by this register'
+    detected_by: sweep-canada-rpaa-psp-registry.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
